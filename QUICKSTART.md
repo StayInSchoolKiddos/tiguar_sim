@@ -32,17 +32,23 @@ MAVProxy connects automatically and opens a **map** and **console** window. The 
 
 The aircraft starts **disarmed, in MANUAL, on the ground**, with throttle held low. No mission is uploaded or started automatically.
 
-At the MAVProxy prompt you can run:
+### Take off
+
+Wait for ArduPilot to finish initializing, then enter these commands **one at a time in the MAVProxy terminal**:
 
 ```text
-status
-mode manual
-rc 3 1000
+arm throttle
+mode takeoff
+takeoff
 ```
+
+Watch the aircraft on the map and its altitude in the console. You do not need to upload a mission for this takeoff sequence.
+
+### Other controls
 
 Useful controls: `mode fbwa` selects stabilized manual flight, `mode rtl` requests return to launch, and `disarm` disarms after you are back on the ground. `rc 1 1500`, `rc 2 1500`, and `rc 4 1500` center roll, pitch, and rudder inputs; throttle is `rc 3 1000` (low) through `rc 3 2000` (high). These are simulated RC inputs, not keyboard joystick controls.
 
-When ready to fly, load your mission with `wp load /path/to/mission.waypoints`, check it with `wp list`, then select `mode auto` and `arm throttle`. Use a fixed-wing mission containing TAKEOFF, waypoint, and LOITER items. Arming in AUTO can start the mission; do this only when ready.
+For an optional mission flight instead, load your mission with `wp load /path/to/mission.waypoints`, check it with `wp list`, then select `mode auto` and `arm throttle`. Use a fixed-wing mission containing TAKEOFF, waypoint, and LOITER items. Arming in AUTO can start the mission; do this only when ready.
 
 An optional graphical ground station on the same computer can listen on **UDP port 14550**, forwarded by MAVProxy. MAVProxy uses TCP port 5760 itself.
 
@@ -75,7 +81,7 @@ The model is provisional. **`config/sitl.parm` is for simulation only; do not lo
 
 ## If something goes wrong
 
-- **Address already in use:** stop the previous simulation with Ctrl-C. Run only one instance at a time.
+- **Address already in use:** type `exit` in the previous simulation's MAVProxy terminal. Run only one instance at a time.
 - **Missing simulator:** run `./install_tiguar.sh`, then retry `./run_tiguar.sh`.
 - **Map/console fail to open:** rerun `./install_tiguar.sh` to install GUI libraries, and launch from a desktop terminal. The project environment exposes the system wxPython/OpenCV packages.
 - **Build runs out of memory:** retry with `BUILD_JOBS=2 ./install_tiguar.sh`.
