@@ -26,20 +26,29 @@ Wait for **Setup complete**. You can skip this step on later runs. A ground stat
 
 The shell script directly starts the compiled **ArduPilot** program, which starts **JSBSim** and loads the calibrated Tiguar. It runs at real-time speed. No Python runner is involved.
 
-## 4. Connect and fly
+## 4. Use MAVProxy
 
-In your ground station (for example, Mission Planner), select a **TCP** connection:
+MAVProxy connects automatically and opens a **map** and **console** window. The terminal accepts commands; the map shows position and the console shows vehicle status. Use a desktop session (or WSLg under WSL2) so the windows can open. Map imagery may need internet access.
 
-- Host: `127.0.0.1`
-- Port: `5760`
+The aircraft starts **disarmed, in MANUAL, on the ground**, with throttle held low. No mission is uploaded or started automatically.
 
-Run the ground station on the same computer/network environment as the simulator. If using WSL or a remote computer, ask the maintainer for the reachable host address.
+At the MAVProxy prompt you can run:
 
-Wait for vehicle telemetry. Upload a fixed-wing mission with a **TAKEOFF** item, a waypoint, and a **LOITER** item, using about **100 m relative altitude**. Select **AUTO** and arm the simulated aircraft to start the mission. No mission is uploaded automatically.
+```text
+status
+mode manual
+rc 3 1000
+```
+
+Useful controls: `mode fbwa` selects stabilized manual flight, `mode rtl` requests return to launch, and `disarm` disarms after you are back on the ground. `rc 1 1500`, `rc 2 1500`, and `rc 4 1500` center roll, pitch, and rudder inputs; throttle is `rc 3 1000` (low) through `rc 3 2000` (high). These are simulated RC inputs, not keyboard joystick controls.
+
+When ready to fly, load your mission with `wp load /path/to/mission.waypoints`, check it with `wp list`, then select `mode auto` and `arm throttle`. Use a fixed-wing mission containing TAKEOFF, waypoint, and LOITER items. Arming in AUTO can start the mission; do this only when ready.
+
+An optional graphical ground station on the same computer can listen on **UDP port 14550**, forwarded by MAVProxy. MAVProxy uses TCP port 5760 itself.
 
 ## 5. Stop
 
-Press **Ctrl-C** in the same terminal. This stops both simulators and saves the run.
+Type **`exit`** at the MAVProxy prompt. The launcher stops ArduPilot and JSBSim too. Ctrl-C is reserved for interrupting MAVProxy commands; use `exit` to finish the session.
 
 Each launch creates a new folder under `runtime/`. Its location is printed at startup.
 
@@ -68,6 +77,7 @@ The model is provisional. **`config/sitl.parm` is for simulation only; do not lo
 
 - **Address already in use:** stop the previous simulation with Ctrl-C. Run only one instance at a time.
 - **Missing simulator:** run `./install_tiguar.sh`, then retry `./run_tiguar.sh`.
+- **Map/console fail to open:** rerun `./install_tiguar.sh` to install GUI libraries, and launch from a desktop terminal. The project environment exposes the system wxPython/OpenCV packages.
 - **Build runs out of memory:** retry with `BUILD_JOBS=2 ./install_tiguar.sh`.
 - **Other startup failure:** give the project maintainer the terminal error and the run folder's `console.log`.
 

@@ -3,7 +3,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p vendor runtime
-python3 -m venv .venv
+# MAVProxy's desktop windows use the distribution's wxPython/OpenCV packages.
+/usr/bin/python3 -m venv --system-site-packages .venv
 .venv/bin/python -m pip install -r requirements.txt
 if [[ ! -d vendor/jsbsim/.git ]]; then
   git clone --depth 1 --branch v1.3.3 https://github.com/JSBSim-Team/jsbsim.git vendor/jsbsim

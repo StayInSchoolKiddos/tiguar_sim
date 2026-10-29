@@ -2,7 +2,7 @@
 
 See [the aircraft XML guide](AIRCRAFT_XML.md) for the JSBSim file structure, units, control mapping, engine/propeller connections, and calibration assumptions.
 
-**First time running the simulator?** Follow the [intern quick-start](QUICKSTART.md): launch with `./run_tiguar.sh`, stop with Ctrl-C.
+**First time running the simulator?** Follow the [intern quick-start](QUICKSTART.md): launch with `./run_tiguar.sh`, use MAVProxy with the aircraft disarmed on the ground, and type `exit` to stop.
 
 This workspace contains a reproducible simulation and a **provisional**, log-conditioned Tiguar model. The original `aircraft/tig` is unchanged. The candidate is `aircraft/tig_calibrated`.
 

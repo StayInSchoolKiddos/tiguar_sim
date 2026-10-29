@@ -33,6 +33,7 @@ sudo apt-get update
 sudo apt-get install -y --no-install-recommends \
   ca-certificates git build-essential cmake pkg-config ccache \
   python3 python3-dev python3-venv python3-pip \
+  python3-wxgtk4.0 python3-opencv python3-matplotlib python3-lxml \
   gawk rsync autoconf automake libtool \
   libxml2-dev libxslt1-dev zlib1g-dev util-linux
 
