@@ -1,0 +1,23 @@
+{
+  "loaded_mass_kg": 24.947580350000003,
+  "loaded_cg_m": [
+    0.94,
+    0,
+    0
+  ],
+  "loaded_diagonal_inertia_kgm2": [
+    20.5,
+    15.5,
+    34.0
+  ],
+  "moment_coefficient_scales": {
+    "ROLL": 4.415248761576567,
+    "PITCH": 3.779565959522068,
+    "YAW": 7.410636442894507
+  },
+  "moment_scale_note": "Effective moment functions scaled with inertia to preserve the seed angular response; these are priors, not independently flight-identified coefficients. Logged controller gains are unchanged.",
+  "inertia_note": "Roll 20.5 and pitch 15.5 from supplied document; yaw 34.0 is a physically admissible prior, NOT the measured 41.4. Rig/configuration unknown. Cross inertias remain approximately zero.",
+  "cg_note": "Unmeasured: nominal x datum retained, vertical CG aligned with thrust datum. Initial seed offset caused pitch-up/stall.",
+  "gear_note": "Gear included in 55 lb. Tricycle layout from manual; 0.713 m track from drawing. Fore-aft contact positions and 0.35 m height are provisional. Spring/damping retained; rolling friction reduced to 0.03.",
+  "controls_note": "Equivalent elevator/rudder used; \u00b120 degree seed travel retained, not physical \u00b128 degree ruddervator travel. Flaps excluded from calibration; no validated landing model."
+}

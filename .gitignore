@@ -1,0 +1,26 @@
+# Downloaded dependencies and local environments
+.deps/
+.venv/
+vendor/
+
+# Simulation runs and generated analysis/report artifacts
+runtime/
+/analysis/
+/runtime-launch.lock
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Local aircraft reference documents and raw flight logs
+# Keep these on disk, but out of Git (case-insensitive extensions).
+*.[pP][dD][fF]
+*.[dD][oO][cC][xX]
+*.[bB][iI][nN]
+
+# Packaged datasets and archives
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z

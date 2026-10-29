@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<thruster name="Prop20x8" type="propeller" version="1.0">
+  <!-- 20x8 two-blade placeholder CT/CP curves; replace with measured data when available -->
+  <diameter unit="M">0.508</diameter>
+  <numblades>2</numblades>
+  <inertia unit="KG*M2">0.010</inertia>
+  <sense>1</sense>
+  <p_factor>1.0</p_factor>
+
+  <!-- Ct(J) -->
+  <table name="Ct_table">
+    <!-- J    Ct -->
+    0.0  0.110
+    0.2  0.105
+    0.4  0.090
+    0.6  0.070
+    0.8  0.040
+    1.0  0.000
+  </table>
+
+  <!-- Cp(J) -->
+  <table name="Cp_table">
+    <!-- J    Cp -->
+    0.0  0.055
+    0.2  0.058
+    0.4  0.060
+    0.6  0.062
+    0.8  0.060
+    1.0  0.050
+  </table>
+</thruster>

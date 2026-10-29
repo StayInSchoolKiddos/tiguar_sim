@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<initialize name="PayloadDropIC">
+
+  <!-- Initial body velocities -->
+  <ubody unit="FT/SEC"> 0.0 </ubody>
+  <vbody unit="FT/SEC"> 0.0 </vbody>
+  <wbody unit="FT/SEC"> 0.0 </wbody>
+
+  <!-- Location -->
+  <latitude unit="DEG"> 39.000000 </latitude>
+  <longitude unit="DEG"> -94.000000 </longitude>
+  <altitude unit="FT"> 400.0 </altitude>
+
+  <!-- Attitude -->
+  <phi unit="DEG"> 0.0 </phi>
+  <theta unit="DEG"> 0.0 </theta>
+  <psi unit="DEG"> 90.0 </psi>
+
+  <!-- Wind (optional) -->
+  <winddir unit="DEG"> 0.0 </winddir>
+  <windspeed unit="FT/SEC"> 0.0 </windspeed>
+
+</initialize>

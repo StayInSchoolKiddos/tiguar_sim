@@ -1,0 +1,8 @@
+numpy
+pandas
+scipy
+matplotlib
+pymavlink
+jsbsim==1.3.3
+empy==3.3.4
+setuptools<81

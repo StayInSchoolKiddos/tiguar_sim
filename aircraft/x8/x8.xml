@@ -1,0 +1,487 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
+<fdm_config name="x8" version="2.0" release="ALPHA"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+
+  <fileheader>
+    <author>JSBSim Skywalker X8 (ArduPilot-style)</author>
+    <license
+        licenseName="GPL (General Public License)"
+        licenseURL="http://www.gnu.org/licenses/gpl.html"/>
+    <note>
+      JSBSim FDM for the Skywalker X8, with geometry, mass properties and
+      key aero derivatives aligned to ArduPilot SITL's hard-coded X8 model.
+      Intended for research, education, and simulation only.
+    </note>
+    <filecreationdate>2025-12-04</filecreationdate>
+    <version>$Revision: 0.1 $</version>
+    <description>Skywalker X8 JSBSim model aligned with ArduPilot SITL X8.</description>
+  </fileheader>
+
+  <!-- ================================================================== -->
+  <!-- Metrics / Geometry                                                 -->
+  <!-- ArduPilot: wing_area = 0.75 m^2, span = 2.12 m                     -->
+  <!-- ================================================================== -->
+  <metrics>
+    <wingarea unit="M2"> 0.75 </wingarea>
+    <wingspan unit="M"> 2.12 </wingspan>
+    <chord unit="M"> 0.3538 </chord>
+
+    <location name="AERORP" unit="M">
+      <x> 0.0 </x>
+      <y> 0.0 </y>
+      <z> 0.0 </z>
+    </location>
+
+    <location name="EYEPOINT" unit="M">
+      <x> 0.2 </x>
+      <y> 0.0 </y>
+      <z> 0.0 </z>
+    </location>
+
+    <location name="VRP" unit="M">
+      <x> 0.2 </x>
+      <y> 0.0 </y>
+      <z> 0.0 </z>
+    </location>
+  </metrics>
+
+  <!-- ================================================================== -->
+  <!-- Mass Properties                                                    -->
+  <!-- ArduPilot SITL X8: mass ≈ 3.3 kg; Ixx, Iyy, Izz small (kg m^2).    -->
+  <!-- ================================================================== -->
+  <mass_balance>
+    <ixx unit="KG*M2"> 0.18 </ixx>
+    <iyy unit="KG*M2"> 0.23 </iyy>
+    <izz unit="KG*M2"> 0.33 </izz>
+    <ixz unit="KG*M2"> 0.0  </ixz>
+
+    <emptywt unit="KG"> 3.3 </emptywt>
+
+    <location name="CG" unit="M">
+      <x> 0.0 </x>
+      <y> 0.0 </y>
+      <z> 0.0 </z>
+    </location>
+  </mass_balance>
+
+  <!-- ================================================================== -->
+  <!-- Ground Reactions (belly lander, minimal for now)                   -->
+  <!-- ================================================================== -->
+  <ground_reactions>
+    <!-- You can add a belly skid contact here if you want ground dynamics -->
+  </ground_reactions>
+
+  <!-- ================================================================== -->
+  <!-- Propulsion                                                         -->
+  <!-- Use your existing electric engine model and a direct thruster.     -->
+  <!-- Make sure DA35_electric.xml and direct.xml exist in Engine/.       -->
+  <!-- ================================================================== -->
+  <propulsion>
+    <engine file="electric800W.xml">
+      <location unit="M">
+        <x> 0.0 </x>
+        <y> 0.0 </y>
+        <z> 0.0 </z>
+      </location>
+
+      <feed> 0.0 </feed>
+
+      <thruster file="direct">
+        <sense> 1 </sense>
+        <location unit="M">
+          <x> 0.0 </x>
+          <y> 0.0 </y>
+          <z> 0.0 </z>
+        </location>
+        <orient unit="DEG">
+          <roll>  0.0 </roll>
+          <pitch> 0.0 </pitch>
+          <yaw>   0.0 </yaw>
+        </orient>
+      </thruster>
+    </engine>
+  </propulsion>
+
+  <!-- ================================================================== -->
+  <!-- Simple Navigation Sensor                                           -->
+  <!-- ================================================================== -->
+  <system name="Navigation">
+    <channel name="Heading">
+      <sensor name="navigation/actual-heading-rad">
+        <input> attitude/heading-true-rad </input>
+        <bias> 0.003 </bias>
+      </sensor>
+    </channel>
+  </system>
+
+  <!-- ================================================================== -->
+  <!-- Flight Control: flying wing, elevator + ailerons (elevons ext. side)-->
+  <!-- ArduPilot default deflections: elevator ±25 deg, aileron ±30 deg   -->
+  <!-- ================================================================== -->
+  <flight_control name="x8">
+
+    <!-- Pitch / Elevator channel -->
+    <channel name="Pitch">
+      <summer name="fcs/pitch-sum">
+        <description>Clamp elevator command [-1,+1]</description>
+        <input>fcs/elevator-cmd-norm</input>
+        <clipto>
+          <min>-1</min>
+          <max> 1</max>
+        </clipto>
+      </summer>
+
+      <aerosurface_scale name="fcs/elevator-control">
+        <description>Elevator command in radians</description>
+        <input>fcs/pitch-sum</input>
+        <range>
+          <min>-25</min>
+          <max> 25</max>
+        </range>
+        <!-- deg -> rad -->
+        <gain>0.0174533</gain>
+      </aerosurface_scale>
+
+      <actuator name="fcs/elevator-actuator">
+        <description>Elevator actuator, limited to ±25 deg</description>
+        <input>fcs/elevator-control</input>
+        <clipto>
+          <min>-0.436332</min>  <!-- -25 deg -->
+          <max> 0.436332</max>  <!--  25 deg -->
+        </clipto>
+        <output>fcs/elevator-pos-rad</output>
+      </actuator>
+    </channel>
+
+    <!-- Roll / Aileron channel -->
+    <channel name="Roll">
+      <summer name="fcs/roll-sum">
+        <description>Clamp aileron command [-1,+1]</description>
+        <input>fcs/aileron-cmd-norm</input>
+        <clipto>
+          <min>-1</min>
+          <max> 1</max>
+        </clipto>
+      </summer>
+
+      <aerosurface_scale name="fcs/left-aileron-control">
+        <description>Left elevon (acting as aileron) in radians</description>
+        <input>fcs/roll-sum</input>
+        <gain>0.0174533</gain>
+        <range>
+          <min>-30</min>
+          <max> 30</max>
+        </range>
+      </aerosurface_scale>
+
+      <actuator name="fcs/left-aileron-actuator">
+        <description>Left aileron actuator, pass-through</description>
+        <input>fcs/left-aileron-control</input>
+        <output>fcs/left-aileron-pos-rad</output>
+      </actuator>
+
+      <aerosurface_scale name="fcs/right-aileron-control">
+        <description>Right elevon (acting as aileron) in radians</description>
+        <input>fcs/roll-sum</input>
+        <gain>0.0174533</gain>
+        <range>
+          <min>-30</min>
+          <max> 30</max>
+        </range>
+      </aerosurface_scale>
+
+      <actuator name="fcs/right-aileron-actuator">
+        <description>Right aileron actuator, pass-through</description>
+        <input>fcs/right-aileron-control</input>
+        <output>fcs/right-aileron-pos-rad</output>
+      </actuator>
+
+      <summer name="fcs/effective-aileron-pos">
+        <description>Effective aileron deflection (average of left/right)</description>
+        <input>fcs/left-aileron-pos-rad</input>
+        <input>fcs/right-aileron-pos-rad</input>
+        <gain>0.5</gain>
+      </summer>
+    </channel>
+
+  </flight_control>
+
+  <aerodynamics>
+
+    <axis name="LIFT">
+
+      <function name="aero/coefficient/CL0">
+        <description>Alpha-independent lift coefficient (ArduPilot CL0)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <value>0.2</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/CLalpha">
+        <description>Lift per radian of angle of attack (ArduPilot CLalpha)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>aero/alpha-rad</property>
+          <value>5.5</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/CLq">
+        <description>Lift due to pitch rate (ArduPilot CLq)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>aero/ci2vel</property>
+          <property>velocities/q-aero-rad_sec</property>
+          <value>3.0</value>
+        </product>
+      </function>
+
+      <!-- No explicit CLde in ArduPilot; set to zero (can tune later) -->
+      <function name="aero/coefficient/CLDe">
+        <description>Lift due to elevator deflection (approx, set 0)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>fcs/elevator-pos-rad</property>
+          <value>0.0</value>
+        </product>
+      </function>
+
+    </axis>
+
+    <axis name="DRAG">
+
+      <function name="aero/coefficient/CD0">
+        <description>Parasitic drag at zero alpha (ArduPilot CD0)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <value>0.04</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/CDalpha">
+        <description>Drag due to angle of attack (ArduPilot CDalpha)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>aero/alpha-rad</property>
+          <value>0.3</value>
+        </product>
+      </function>
+
+      <!-- Optional: can add CDalpha^2 etc if you want a stronger drag rise -->
+
+      <function name="aero/coefficient/CDq">
+        <description>Drag due to pitch rate (kept zero for now)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>aero/ci2vel</property>
+          <property>velocities/q-aero-rad_sec</property>
+          <value>0.0</value>
+        </product>
+      </function>
+
+    </axis>
+
+    <axis name="SIDE">
+
+      <function name="aero/coefficient/CYb">
+        <description>Sideforce due to sideslip (ArduPilot CYbeta)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>aero/beta-rad</property>
+          <value>-0.98</value>
+        </product>
+      </function>
+
+      <!-- No CYp, CYr, CYda in ArduPilot; leave zero or add later -->
+      <function name="aero/coefficient/CYp">
+        <description>Sideforce due to roll rate (set 0)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>aero/bi2vel</property>
+          <property>velocities/p-aero-rad_sec</property>
+          <value>0.0</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/CYr">
+        <description>Sideforce due to yaw rate (set 0)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>aero/bi2vel</property>
+          <property>velocities/r-aero-rad_sec</property>
+          <value>0.0</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/CYda">
+        <description>Sideforce due to aileron (set 0)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>fcs/effective-aileron-pos</property>
+          <value>0.0</value>
+        </product>
+      </function>
+
+    </axis>
+
+    <axis name="ROLL">
+
+      <function name="aero/coefficient/Clb">
+        <description>Roll moment due to sideslip (ArduPilot Clbeta)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/beta-rad</property>
+          <value>-0.12</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/Clp">
+        <description>Roll damping (ArduPilot Clp)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/bi2vel</property>
+          <property>velocities/p-aero-rad_sec</property>
+          <value>-0.4</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/Clr">
+        <description>Roll moment due to yaw rate (ArduPilot Clr)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/bi2vel</property>
+          <property>velocities/r-aero-rad_sec</property>
+          <value>0.15</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/Clda">
+        <description>Roll moment due to aileron (ArduPilot Clda)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/bw-ft</property>
+          <property>fcs/effective-aileron-pos</property>
+          <value>0.08</value>
+        </product>
+      </function>
+
+    </axis>
+
+    <axis name="PITCH">
+
+      <function name="aero/coefficient/Cm0">
+        <description>Pitch moment at zero alpha (tunable trim)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/cbarw-ft</property>
+          <value>0.0</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/Cmalpha">
+        <description>Pitch moment due to alpha (approximate, tune to match)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/cbarw-ft</property>
+          <property>aero/alpha-rad</property>
+          <value>-0.6</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/Cmq">
+        <description>Pitch damping due to pitch rate (ArduPilot Cmq)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/cbarw-ft</property>
+          <property>aero/ci2vel</property>
+          <property>velocities/q-aero-rad_sec</property>
+          <value>-12.0</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/CmDe">
+        <description>Pitch moment due to elevator deflection (ArduPilot Cmde)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/cbarw-ft</property>
+          <property>fcs/elevator-pos-rad</property>
+          <value>-1.0</value>
+        </product>
+      </function>
+
+    </axis>
+
+    <axis name="YAW">
+
+      <function name="aero/coefficient/Cnb">
+        <description>Yaw moment due to sideslip (ArduPilot Cnbeta)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/beta-rad</property>
+          <value>0.25</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/Cnp">
+        <description>Yaw moment due to roll rate (ArduPilot Cnp)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/bi2vel</property>
+          <property>velocities/p-aero-rad_sec</property>
+          <value>-0.022</value>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/Cnr">
+        <description>Yaw damping due to yaw rate (ArduPilot Cnr)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/bw-ft</property>
+          <property>aero/bi2vel</property>
+          <property>velocities/r-aero-rad_sec</property>
+          <value>-0.35</value>
+        </product>
+      </function>
+
+      <!-- ArduPilot Cndr is yaw due to rudder; X8 has no rudder in this JSBSim
+           version, so we leave yaw due to aileron zero by default. -->
+      <function name="aero/coefficient/Cnda">
+        <description>Yaw moment due to aileron (set 0 for flying wing)</description>
+        <product>
+          <property>aero/qbar-area</property>
+          <property>metrics/bw-ft</property>
+          <property>fcs/effective-aileron-pos</property>
+          <value>0.0</value>
+        </product>
+      </function>
+
+    </axis>
+
+  </aerodynamics>
+
+  <!-- Example CSV output block (disabled by default) -->
+  <!-- <output name="JSBoutX8.csv" type="CSV" rate="10">
+    <rates> ON             </rates>
+    <velocities> ON        </velocities>
+    <position> ON          </position>
+    <atmosphere> OFF       </atmosphere>
+    <fcs> ON               </fcs>
+    <ground_reactions> OFF </ground_reactions>
+    <propulsion> ON        </propulsion>
+    <simulation> ON        </simulation>
+    <massprops> ON         </massprops>
+    <forces> OFF           </forces>
+    <moments> OFF          </moments>
+    <aerosurfaces> OFF     </aerosurfaces>
+  </output> -->
+
+
+</fdm_config>

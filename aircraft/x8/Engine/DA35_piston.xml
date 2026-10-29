@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<engine name="DA35" type="piston" version="1.0">
+  <!-- Desert Aircraft DA-35 (35 cc) single-cylinder, 2-stroke gasoline.
+       Structured like JSBSim piston examples: idle/max RPM + maps. -->
+
+  <!-- Installation (may be overridden by aircraft XML) -->
+  <location unit="M"><x>0.40</x><y>0.00</y><z>0.00</z></location>
+  <orient unit="DEG"><roll>0</roll><pitch>0</pitch><yaw>0</yaw></orient>
+
+  <!-- Operating band / general -->
+  <idle-rpm>1500</idle-rpm>
+  <max-rpm>8200</max-rpm>
+  <gear-ratio>1.0</gear-ratio>        <!-- direct drive -->
+  <starter-torque unit="N*M">0.0</starter-torque>
+
+  <!-- Simple fuel/ignition placeholders (kept flat for SITL) -->
+  <mixture>1.0</mixture>
+  <magnetos>2</magnetos>
+
+  <!-- Throttle→target RPM (governor-like) -->
+  <map name="throttle-rpm">
+    <table>
+      0.00 1500
+      0.10 2300
+      0.20 3100
+      0.30 3900
+      0.40 4700
+      0.50 5400
+      0.60 6100
+      0.70 6800
+      0.80 7400
+      0.90 7900
+      1.00 8200
+    </table>
+  </map>
+
+  <!-- Net shaft torque vs RPM (tune with level-flight throttle data) -->
+  <!-- Peak ~3.0 N·m @ ~7.6–8.0k rpm → ~2.4–2.5 kW -->
+  <map name="torque-rpm">
+    <table>
+      1500 1.20
+      2500 1.70
+      3500 2.20
+      4500 2.55
+      5500 2.80
+      6500 2.95
+      7200 3.02
+      7600 3.05
+      8000 3.00
+      8200 2.90
+    </table>
+  </map>
+
+  <!-- Internal friction torque vs RPM -->
+  <map name="friction-rpm">
+    <table>
+      0    0.10
+      1500 0.20
+      3000 0.25
+      5000 0.30
+      8000 0.35
+    </table>
+  </map>
+</engine>

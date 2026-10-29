@@ -1,0 +1,10 @@
+{
+  "numpy": "2.5.2",
+  "pandas": "3.0.6",
+  "scipy": "1.18.1",
+  "matplotlib": "3.11.1",
+  "pymavlink": "2.4.49",
+  "jsbsim": "1.3.3",
+  "ardupilot_commit": "bbf0b066e4baa04b5a746f22de642a25905cd52d",
+  "jsbsim_commit": "66f7fafc07fe13e7ede9db20873030fed2881713"
+}

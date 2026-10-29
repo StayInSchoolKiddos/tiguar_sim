@@ -1,0 +1,9 @@
+{
+  "aircraft/tig_calibrated/tig_calibrated.xml": "f70254a0a586808408b5aea073ef815ecc8cb66d8047ecf3ad1fbfd388aec2ad",
+  "aircraft/tig_calibrated/Engine/empirical_power.xml": "9a008db1f308a56a38baa4b326811a1fd9c0457795730380041f74f3805ab0db",
+  "aircraft/tig_calibrated/Engine/Tiguar_20x10_CCW.xml": "11617312750e769e802f72941129ad3493fe7811ad1cc196ecd9c77769567376",
+  "config/sitl.parm": "01966fe547e4a11521584356ec78247563846a24c0b191cc6d68322cfabe6e32",
+  "config/calibration.json": "f6cfeedce8267c46286fbe7bcd14737b9226b6538a9060dd662b99733586f737",
+  "config/model_assumptions.json": "190fa25375a38659dd3455422b7ce39457b7ac47a586d6fa4c2cdeeae66f75dd",
+  "aircraft/tig/tig.xml": "d98b135d04db8abafc529654646a1880223fdc5364cc6f805d884113a752359e"
+}

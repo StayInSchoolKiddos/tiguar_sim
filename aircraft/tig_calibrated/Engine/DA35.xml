@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!-- Desert Aircraft DA35 (35cc) - simple JSBSim piston engine approximation
+     Manual: idle ~1650 rpm, range 1650-7800 rpm, CCW, 20x10 prop recommended. -->
+<piston_engine name="DA35">
+
+  <!-- Basic configuration -->
+  <displacement unit="IN3">2.136</displacement> <!-- 35 cc -->
+  <cycles>2</cycles> <!-- 2-stroke approximation -->
+  <idlerpm unit="RPM">1650</idlerpm>
+  <maxrpm  unit="RPM">7800</maxrpm>
+
+  <!-- Power: start with ~3 hp class at high rpm (tune later) -->
+  <maxhp unit="HP">4.5</maxhp>
+
+  <!-- Throttle mapping -->
+  <minthrottle>0.0</minthrottle>
+  <maxthrottle>1.0</maxthrottle>
+
+  <!-- A simple normalized power-vs-rpm shape (0..1). You can tune this. -->
+  <table name="power_factor_vs_rpm" type="internal">
+    <independentVar>propulsion/engine[0]/engine-rpm</independentVar>
+    <tableData>
+      1650   0.10
+      2500   0.18
+      3500   0.32
+      4500   0.50
+      5500   0.70
+      6500   0.88
+      7800   1.00
+    </tableData>
+  </table>
+
+  <!-- Overall shaft power output = maxhp * throttle * power_factor_vs_rpm -->
+  <function name="propulsion/engine[0]/shaft-power-hp">
+    <product>
+      <value>4.0</value>
+      <property>fcs/throttle-cmd-norm</property>
+      <table>
+        <independentVar>propulsion/engine[0]/engine-rpm</independentVar>
+        <tableData>
+          1650   0.10
+          2500   0.18
+          3500   0.32
+          4500   0.60
+          5500   0.80
+          6500   0.95
+          7800   1.00
+        </tableData>
+      </table>
+    </product>
+  </function>
+
+</piston_engine>
