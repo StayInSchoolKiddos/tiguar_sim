@@ -5,6 +5,9 @@ vendor/
 
 # Simulation runs and generated analysis/report artifacts
 runtime/
+# Reproducible staging models used by the fleet cruise calibration workflow.
+/aircraft/tig_cruise_baseline/
+/aircraft/tig_cruise_candidate/
 /analysis/
 /runtime-launch.lock
 

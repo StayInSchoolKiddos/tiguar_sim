@@ -18,6 +18,10 @@ def table(df):return df.to_html(index=False,float_format=lambda x:f'{x:.3f}',bor
 
 def main():
     cfg=json.loads((ROOT/'config/calibration.json').read_text())
+    archive_notice = ''
+    if cfg.get('cruise'):
+        cfg=json.loads((ROOT/'config/log_calibration_baseline.json').read_text())
+        archive_notice = '<p class="notice">This report describes the archived log-fit model and its original runs. See <a href="cruise_calibration/index.html">the fleet cruise calibration report</a> for the current model.</p>'
     assumptions=json.loads((ROOT/'config/model_assumptions.json').read_text())
     real=pd.read_csv(ROOT/'analysis/2026-05-01/segments.csv')
     baseline=pd.read_csv(ROOT/'runtime/baseline_clean/telemetry.csv')
@@ -78,6 +82,7 @@ def main():
     doc=f'''<!doctype html><html lang="en"><meta charset="utf-8"><title>Tiguar simulation validation</title>
 <style>body{{font:16px/1.55 system-ui,sans-serif;max-width:1150px;margin:40px auto;padding:0 24px;color:#182b3a}}h1,h2{{line-height:1.2}}table{{border-collapse:collapse;width:100%;font-size:14px}}th,td{{padding:9px;border-bottom:1px solid #d6e0e5;text-align:right}}th:first-child,td:first-child{{text-align:left}}img{{max-width:100%;height:auto}}.notice{{background:#fff1cd;padding:18px;border-left:5px solid #c58b00}}pre{{white-space:pre-wrap;background:#edf3f6;padding:15px;font-size:13px}}code{{background:#edf3f6}}</style>
 <h1>Tiguar simulation validation</h1><p>Prepared October 28, 2026. Original aircraft preserved; candidate: <code>aircraft/tig_calibrated</code>.</p>
+{archive_notice}
 <p><a href="trajectories/index.html">Real vs simulated state/command trajectories and delta plots</a> · <a href="trajectories/tiguar_real_vs_sim.pdf">Download comparison PDF</a></p>
 <div class="notice"><strong>Working simulator; limited flight-data validation.</strong> Coupled mission settled checks: <b>{status}</b>.
 The candidate matches the May 1 cruise/loiter operating region, but independent April 30 climb prediction misses the proposed 0.5 m/s target.

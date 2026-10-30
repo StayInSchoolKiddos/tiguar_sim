@@ -1,0 +1,124 @@
+{
+  "model": "tig_da35_cruise",
+  "scale": 0.7666266657443398,
+  "training": "2026-05-01",
+  "held_out": "2026-04-30",
+  "fit_objective": "Equal-weight mean squared RPM error on May 1 selected cruise windows only",
+  "training_throttle_range": [
+    0.2012432432432432,
+    0.3297297297297296
+  ],
+  "scale_bounds": [
+    0.75,
+    1.15
+  ],
+  "interpretation": "Training RPM RMSE changes from 487 to 119; held-out RPM RMSE changes from 404 to 6. The correction improves both day-level scores, but two held-out windows cannot establish broad accuracy.",
+  "metrics": [
+    {
+      "date": "2026-04-30",
+      "partition": "held_out",
+      "model": "tig_da35",
+      "windows": 2,
+      "rpm_rmse": 403.5092404072227,
+      "rpm_bias": 403.26478076184367,
+      "rpm_mape_pct": 6.884889254734771,
+      "rpm_max_error_pct": 6.980642882241894,
+      "climb_rmse_mps": 2.2395072588483607
+    },
+    {
+      "date": "2026-04-30",
+      "partition": "held_out",
+      "model": "tig_da35_cruise",
+      "windows": 2,
+      "rpm_rmse": 6.3686844729769945,
+      "rpm_bias": -2.3306047019564176,
+      "rpm_mape_pct": 0.10209672922601443,
+      "rpm_max_error_pct": 0.1440350309701688,
+      "climb_rmse_mps": 1.5034236769678087
+    },
+    {
+      "date": "2026-05-01",
+      "partition": "fit",
+      "model": "tig_da35",
+      "windows": 15,
+      "rpm_rmse": 486.87282205939704,
+      "rpm_bias": 472.66964658587654,
+      "rpm_mape_pct": 9.728244455687587,
+      "rpm_max_error_pct": 17.562847887805667,
+      "climb_rmse_mps": 0.8043288696455996
+    },
+    {
+      "date": "2026-05-01",
+      "partition": "fit",
+      "model": "tig_da35_cruise",
+      "windows": 15,
+      "rpm_rmse": 118.98633844926732,
+      "rpm_bias": 3.1296573582738345,
+      "rpm_mape_pct": 1.883587743987646,
+      "rpm_max_error_pct": 7.0423375309810465,
+      "climb_rmse_mps": 0.27661027534931615
+    }
+  ],
+  "sources": {
+    "aircraft/tig_da35/tig_da35.xml": "de09dd432f4b1dbaf41090bc32119938ab713ded93fe9a3e462118f1874869cb",
+    "aircraft/tig_da35/Engine/DA35.xml": "e4199efdccd1ac5076472bd28a03c228dcc732d7eef98084edb187e96d084d07",
+    "aircraft/tig_da35/Engine/Tiguar_20x10_CCW.xml": "11617312750e769e802f72941129ad3493fe7811ad1cc196ecd9c77769567376",
+    "analysis/2026-05-01/segments.csv": "b83a03d19fdab3a911dc5380e50c778c55bd0d9d2b204301acb3072378c6b3b6",
+    "analysis/2026-04-30/segments.csv": "a36d8335c1d673ef1506add3cf67b54136dc6129a83d491b1185b08977e7d939",
+    "analysis/2026-05-01/samples.csv.gz": "ff76fd9b9d52106c1af833e4152d8bd1c6ae835b4b827123e0afb5b96e5b82ab",
+    "analysis/2026-04-30/samples.csv.gz": "2842778a72b86b7cdac40463a82947e901596a5626f71719676cb441d6bf7e3e"
+  },
+  "checks": {
+    "cold_start_idle_pass": true,
+    "idle_rpm": 1650.000000251271,
+    "ignition_shutdown_pass": true,
+    "coupled": {
+      "status": "passed",
+      "run": "runtime/da35_default75_validation",
+      "settled_phases": [
+        {
+          "mission_seq": 3,
+          "altitude_target_m": 100,
+          "altitude_mean_m": 100.036345,
+          "airspeed_target_mps": 23,
+          "airspeed_mean_mps": 22.99456706047058,
+          "throttle_mean_pct": 25.675
+        },
+        {
+          "mission_seq": 5,
+          "altitude_target_m": 100,
+          "altitude_mean_m": 100.05156,
+          "airspeed_target_mps": 25,
+          "airspeed_mean_mps": 24.98945637702942,
+          "throttle_mean_pct": 27.1
+        },
+        {
+          "mission_seq": 7,
+          "altitude_target_m": 130,
+          "altitude_mean_m": 130.08105,
+          "airspeed_target_mps": 23,
+          "airspeed_mean_mps": 23.001627292633056,
+          "throttle_mean_pct": 25.645
+        },
+        {
+          "mission_seq": 8,
+          "altitude_target_m": 100,
+          "altitude_mean_m": 100.07648499999999,
+          "airspeed_target_mps": 23,
+          "airspeed_mean_mps": 23.024178342819212,
+          "throttle_mean_pct": 25.445
+        },
+        {
+          "mission_seq": 9,
+          "altitude_target_m": 100,
+          "altitude_mean_m": 99.91918000000001,
+          "airspeed_target_mps": 23,
+          "airspeed_mean_mps": 22.99939895629883,
+          "throttle_mean_pct": 26.52
+        }
+      ],
+      "parameters_sha256": "98f4ff0b238fc6b7a381e9bab609edac529f3be1d1f6053fe3b41952c41b745c"
+    },
+    "default_changed": false
+  }
+}

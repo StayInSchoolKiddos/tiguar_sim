@@ -1,0 +1,200 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Tiguar DA35 piston candidate</title>
+<style>body{font:16px/1.5 system-ui;max-width:1100px;margin:40px auto;padding:0 20px}img{width:100%}table{border-collapse:collapse;font-size:13px}td,th{padding:5px;border:1px solid #ccc}pre{white-space:pre-wrap}</style>
+<h1>Tiguar DA35 piston candidate</h1><p><strong>Candidate only. The current default has not changed.</strong> Keep the current default. Review rated power, propeller loading, electric boost timing and real-flight errors before considering promotion.</p>
+<p><a href="../da35_cruise_analysis/index.html">New: cruise-flight analysis and one-parameter empirical correction</a>. This separate variant is fitted to level/turn flight windows rather than the fleet-average spreadsheet.</p>
+<h2>What changed</h2><p>The aircraft now has a separate <code>tig_da35</code> definition using a native JSBSim piston engine. A fitted throttle-to-carburetor linkage replaces the equivalent-power mapping. Power comes from JSBSim's manifold pressure, mixture, RPM and loss calculations; RPM is still determined by propeller loading. There is no forced RPM or artificial 1.62 kW cap.</p>
+<p>The old DA35 file's <code>power_factor_vs_rpm</code> table is not a supported FGPiston table. Its custom <code>shaft-power-hp</code> function is not consumed by the piston power calculation. Both have been removed from the candidate. Explicit geometry, friction and starting parameters replace large-engine defaults.</p>
+<h2>Evidence and assumptions</h2><p>The supplied <em>S-410 Tiguar User Manual v3.0</em>, page 8, confirms 35 cc, one cylinder, two strokes, 1650 RPM idle and a 1650–7800 RPM operating range. The <a href="https://www.desertaircraft.com/products/da-35">manufacturer product page</a> lists 1500–8200 RPM and no horsepower rating (checked October 29, 2026). The retained 4.5 hp rating is an unverified seed-file assumption. The installed variant has not been established.</p>
+<p>The user recalls approximately 20% electric assistance during takeoff or initial climb only. Exact shaft power and time intervals remain unverified; this recollection is distinct from nominal system capability. Manual section 4.1 describes approximately 50% takeoff power boost, normal flight on the gasoline engine, and a brushless electric motor labeled 2200 W / 230 KV. These nominal figures do not identify actual shaft assistance in the logs. Cruise calibration is conditional on the CSV excluding boosted climb samples. The candidate has no boost model; it must not absorb boosted takeoff output into a gasoline-only rating.</p>
+<p>The bore/stroke split, losses, compression, mixture, thermal properties and manifold lag remain assumptions. JSBSim's piston model still uses a four-stroke-like airflow calculation (RPM/2) even with cycles=2, so fuel consumption and temperatures must not be treated as measured DA35 performance. Rotation sense remains unchanged because the manual does not specify its viewing direction.</p>
+<h2>Cruise fit and full-throttle findings</h2><img src="engine_comparison.png">
+<p>Nine supported cruise bins are fitted at 23 m/s TAS, density 1.1396 kg/m³. RMS relative RPM error is 0.0000%. This is a consistency check against the fitting targets, not independent validation. The three lower bins exceed the available propeller coefficient domain at cruise and are excluded.</p>
+<p>Zero throttle is a running static idle; ignition off is shutdown. The 90% midpoint matches the highest CSV bin, while 100% opens the carburetor fully. That final segment is unmeasured. The candidate reaches 8731 RPM in full-throttle bench tests, above the manual's range. JSBSim's <code>maxrpm</code> parameter is a reference for engine calculations, not an RPM governor. Do not hide this discrepancy with a fictitious limiter: rated power, installed propeller coefficients and the actual throttle linkage need review.</p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>thr_bin</th>
+      <th>rpm_mean</th>
+      <th>supported</th>
+      <th>rpm</th>
+      <th>error_pct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0-1</td>
+      <td>2281.250</td>
+      <td>False</td>
+      <td>1837.931</td>
+      <td>-19.433</td>
+    </tr>
+    <tr>
+      <td>1-5</td>
+      <td>2934.750</td>
+      <td>False</td>
+      <td>2158.720</td>
+      <td>-26.443</td>
+    </tr>
+    <tr>
+      <td>5-10</td>
+      <td>3586.000</td>
+      <td>False</td>
+      <td>2931.258</td>
+      <td>-18.258</td>
+    </tr>
+    <tr>
+      <td>10-15</td>
+      <td>4156.250</td>
+      <td>True</td>
+      <td>4156.250</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>15-20</td>
+      <td>4705.750</td>
+      <td>True</td>
+      <td>4705.750</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>20-25</td>
+      <td>5151.750</td>
+      <td>True</td>
+      <td>5151.750</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>25-30</td>
+      <td>5525.250</td>
+      <td>True</td>
+      <td>5525.250</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>30-40</td>
+      <td>5880.000</td>
+      <td>True</td>
+      <td>5880.000</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>40-50</td>
+      <td>6263.500</td>
+      <td>True</td>
+      <td>6263.500</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>50-60</td>
+      <td>6551.000</td>
+      <td>True</td>
+      <td>6551.000</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>60-80</td>
+      <td>6748.500</td>
+      <td>True</td>
+      <td>6748.500</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>80-100</td>
+      <td>7111.750</td>
+      <td>True</td>
+      <td>7111.750</td>
+      <td>-0.000</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Takeoff context</h2><img src="takeoff_context.png">
+<p>The new standalone tests run both engines through identical simple pilot commands: five seconds at idle, a one-second ramp to full throttle, then an 8° pitch demand above 18 m/s. They stop at 50 m altitude. They are not ArduPilot SITL and do not establish real takeoff accuracy. Real traces begin at the existing flight-detection event; simulated traces begin at 12 m/s. Ground-roll distance and time are not comparable from these anchors.</p>
+<p>Both real takeoffs use a logged flap value of 50 initially, while this model has no calibrated flap behavior. Their RPM also exceeds 7800. Electric assistance, aircraft configuration and different commands could contribute; these data cannot isolate DA35-only power. A successful simulated takeoff is therefore not a validated real takeoff match. The one-second throttle ramp is a shared test assumption, not a fitted actuator response. An instantaneous full-power step from zero RPM caused a numerical ground-contact failure in the equivalent-power baseline and was rejected as a comparison setup.</p>
+<h2>Validation</h2><pre>{
+  &quot;cruise_rms_error_pct&quot;: 1.1249733358058637e-06,
+  &quot;cruise_max_error_pct&quot;: 2.335973825484672e-06,
+  &quot;all_points_converged&quot;: true,
+  &quot;cold_start_pass&quot;: true,
+  &quot;ignition_shutdown_pass&quot;: true,
+  &quot;starvation_shutdown_pass&quot;: true,
+  &quot;max_full_throttle_rpm&quot;: 8730.779623472663,
+  &quot;exceeds_manual_range&quot;: true,
+  &quot;sitl_status&quot;: &quot;Completed 620-second profile; pipeline checks passed.&quot;,
+  &quot;default_changed&quot;: false,
+  &quot;recommendation&quot;: &quot;Keep the current default. Review rated power, propeller loading, electric boost timing and real-flight errors before considering promotion.&quot;,
+  &quot;sitl_pipeline_pass&quot;: true,
+  &quot;sitl_run&quot;: &quot;runtime/da35_validation_retry&quot;,
+  &quot;settled_phases&quot;: [
+    {
+      &quot;mission_seq&quot;: 3,
+      &quot;target_alt&quot;: 100,
+      &quot;mean_alt&quot;: 100.00492499999999,
+      &quot;target_eas&quot;: 23,
+      &quot;mean_eas&quot;: 22.99837184906006
+    },
+    {
+      &quot;mission_seq&quot;: 5,
+      &quot;target_alt&quot;: 100,
+      &quot;mean_alt&quot;: 99.99915000000001,
+      &quot;target_eas&quot;: 25,
+      &quot;mean_eas&quot;: 25.015958166122438
+    },
+    {
+      &quot;mission_seq&quot;: 7,
+      &quot;target_alt&quot;: 130,
+      &quot;mean_alt&quot;: 130.093505,
+      &quot;target_eas&quot;: 23,
+      &quot;mean_eas&quot;: 23.009413146972655
+    },
+    {
+      &quot;mission_seq&quot;: 8,
+      &quot;target_alt&quot;: 100,
+      &quot;mean_alt&quot;: 100.14563,
+      &quot;target_eas&quot;: 23,
+      &quot;mean_eas&quot;: 22.998721342086792
+    },
+    {
+      &quot;mission_seq&quot;: 9,
+      &quot;target_alt&quot;: 100,
+      &quot;mean_alt&quot;: 99.948935,
+      &quot;target_eas&quot;: 23,
+      &quot;mean_eas&quot;: 23.003869857788086
+    }
+  ],
+  &quot;standalone_takeoff&quot;: [
+    {
+      &quot;model&quot;: &quot;tig_calibrated&quot;,
+      &quot;seconds_from_throttle_ramp_to_50m&quot;: 25.3,
+      &quot;reached_50m&quot;: true,
+      &quot;max_rpm&quot;: 7429.389328580348,
+      &quot;max_rpm_after_12_mps&quot;: 7429.389328580348,
+      &quot;note&quot;: &quot;Identical simple pilot, flaps up; not coupled ArduPilot or real-flight validation&quot;
+    },
+    {
+      &quot;model&quot;: &quot;tig_da35&quot;,
+      &quot;seconds_from_throttle_ramp_to_50m&quot;: 17.35,
+      &quot;reached_50m&quot;: true,
+      &quot;max_rpm&quot;: 9138.88200741002,
+      &quot;max_rpm_after_12_mps&quot;: 9138.88200741002,
+      &quot;note&quot;: &quot;Identical simple pilot, flaps up; not coupled ArduPilot or real-flight validation&quot;
+    }
+  ],
+  &quot;real_takeoff_context&quot;: [
+    {
+      &quot;date&quot;: &quot;2026-04-30&quot;,
+      &quot;initial_flap&quot;: 50.0,
+      &quot;max_rpm&quot;: 8321.0
+    },
+    {
+      &quot;date&quot;: &quot;2026-05-01&quot;,
+      &quot;initial_flap&quot;: 50.0,
+      &quot;max_rpm&quot;: 8247.0
+    }
+  ]
+}</pre>
+<p><a href="steady_logs.html">Comparison against actual steady-flight windows</a>: separate from the CSV fit and from coupled autopilot tracking checks.</p>
+<h2>Reproduce</h2><pre>MPLCONFIGDIR=/tmp/tiguar-mpl python3 scripts/da35_calibration.py
+python3 scripts/test_da35.py
+python3 scripts/run_sitl.py --model tig_da35 --name da35_validation --profile --duration 620</pre>
+<p>Coupled-flight status: Completed 620-second profile; pipeline checks passed.. Successful autopilot tracking does not establish a match to the real takeoff or separate electric and gasoline shaft power.</p>
+<p><a href="propulsion_sweep.csv">Sweep CSV</a> · <a href="cruise_bins.csv">Cruise-bin results</a> · <a href="lifecycle.json">Start/idle/shutdown tests</a> · <a href="validation.json">Validation details</a></p></html>

@@ -1,0 +1,50 @@
+{
+  "climb_limit_2": {
+    "overrides": {
+      "TECS_CLMB_MAX": 2
+    },
+    "mission_min_pitch_deg": 12,
+    "parameter_sha256": "75f50f3b0cc6d630503b6ef5de03f9897805799320548633cab32f3408b5267c",
+    "run": "runtime/da35_climb_options/climb_limit_2",
+    "bin_sha256": "00437d78e2f819956d54135a6ac6d464e195193a013295c5c45013ac4144b785",
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641"
+  },
+  "mission_pitch_5": {
+    "overrides": {},
+    "mission_min_pitch_deg": 5,
+    "parameter_sha256": "166f66486d139b28ae226317c54fe9e49a81593fd9e3f4ea32f9cb89d4ade0b4",
+    "run": "runtime/da35_climb_options/mission_pitch_5",
+    "bin_sha256": "311f507b686682363d3d3fa94c5dc91615b6cceeba32f06b19453bf3cce0f1ea",
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641"
+  },
+  "pitch_cap_10": {
+    "overrides": {
+      "TECS_PITCH_MAX": 10
+    },
+    "mission_min_pitch_deg": 5,
+    "parameter_sha256": "246ac4003db5640b56a446e8cd5078f784c5ac2f44706f1e01716b9a0026d7bd",
+    "run": "runtime/da35_climb_options/pitch_cap_10",
+    "bin_sha256": "ab053dd6f44ae21c99360fe4f1de19bedd4feb85e5131e55a317665a68d56dfe",
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641"
+  },
+  "throttle_cap_75": {
+    "overrides": {
+      "TKOFF_THR_MAX": 75
+    },
+    "mission_min_pitch_deg": 12,
+    "parameter_sha256": "dcc6c74305731c9dfec2feda97b9df58a27f120792e3b1e39de530c06e686fe6",
+    "run": "runtime/da35_climb_options/throttle_cap_75",
+    "bin_sha256": "3fe654d66c89168b10999496966d649668ff6f64612074a7a519cd4595fed48a",
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641"
+  },
+  "baseline": {
+    "run": "runtime/da35_bin_matched_final",
+    "bin_sha256": "43727c7ebebf9c98153043ea2f6740450d63917db4dfb26a5a33f750ca3f59ee",
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641",
+    "parameter_sha256": "166f66486d139b28ae226317c54fe9e49a81593fd9e3f4ea32f9cb89d4ade0b4"
+  },
+  "actual": {
+    "source": "analysis/2026-05-01/samples.csv.gz",
+    "sha256": "ff76fd9b9d52106c1af833e4152d8bd1c6ae835b4b827123e0afb5b96e5b82ab"
+  }
+}

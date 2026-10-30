@@ -1,0 +1,89 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tiguar climb-rate options</title>
+<style>body{font:17px/1.6 system-ui;max-width:1100px;margin:32px auto;padding:0 20px;color:#202b38}img{width:100%}table{border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid #ccc;text-align:left!important}.scroll{overflow-x:auto}.note{background:#fff4df;padding:16px}details{margin:20px 0}pre{white-space:pre-wrap}</style>
+<p><a href="index.html">Cruise and takeoff report</a> · <a href="pitch_investigation.html">Pitch and parameter investigation</a></p>
+<h1>Options to reduce simulated takeoff climb</h1>
+<p><strong>The tested 75% takeoff throttle limit is now the default for <code>tig_da35_cruise</code>.</strong> See <a href="default75.html">the full-mission and straight-cruise verification</a>. The baseline in these experiments is the earlier BIN-matched configuration before that model override. The actual flight used different commands and configuration, so matching climb with less commanded throttle would not validate the engine model.</p>
+<div class="scroll"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Option</th>
+      <th>Peak climb, 0–30 s (m/s)</th>
+      <th>Mean takeoff climb at 10–80 m (m/s)</th>
+      <th>Peak pitch, 0–30 s (deg)</th>
+      <th>Max EAS, 0–60 s (m/s)</th>
+      <th>Min EAS above 10 m (m/s)</th>
+      <th>Seconds to +50 m</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Actual May 1</td>
+      <td>4.49</td>
+      <td>2.09</td>
+      <td>17.99</td>
+      <td>25.87</td>
+      <td>18.09</td>
+      <td>37.50</td>
+    </tr>
+    <tr>
+      <td>BIN-matched baseline</td>
+      <td>8.05</td>
+      <td>6.58</td>
+      <td>22.55</td>
+      <td>24.49</td>
+      <td>20.72</td>
+      <td>14.90</td>
+    </tr>
+    <tr>
+      <td>TECS climb limit 2 m/s</td>
+      <td>8.04</td>
+      <td>6.54</td>
+      <td>23.11</td>
+      <td>24.50</td>
+      <td>20.53</td>
+      <td>14.90</td>
+    </tr>
+    <tr>
+      <td>Mission minimum pitch 5°</td>
+      <td>8.59</td>
+      <td>7.12</td>
+      <td>21.30</td>
+      <td>25.81</td>
+      <td>21.28</td>
+      <td>15.20</td>
+    </tr>
+    <tr>
+      <td>Pitch max 10°, mission min 5°</td>
+      <td>7.38</td>
+      <td>6.24</td>
+      <td>16.63</td>
+      <td>29.91</td>
+      <td>22.41</td>
+      <td>16.00</td>
+    </tr>
+    <tr>
+      <td>Takeoff throttle maximum 75%</td>
+      <td>4.52</td>
+      <td>3.05</td>
+      <td>21.52</td>
+      <td>24.97</td>
+      <td>17.78</td>
+      <td>25.50</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>Peak climb and pitch use the first 30 seconds from sustained throttle onset. Mean climb uses only takeoff-stage samples at 10–80 m above each pre-takeoff reference. These windows differ in time and duration between flights. Airspeed extrema use the displayed first 60 seconds, with the minimum restricted to height above 10 m. The actual data are the first May 1 takeoff; each simulation is a separate mission, not a replay.</p>
+<img src="climb_options.png" alt="Four separate climb-rate comparisons: actual in black, BIN-matched baseline in orange, and each experimental option in teal.">
+<h2>Which option addresses which problem?</h2>
+<ol><li><strong>Limit takeoff throttle:</strong> set <code>TKOFF_THR_MAX=75</code> in a separate simulation profile. It caps the commanded throttle during takeoff; 75% command is not 75% shaft power. This tested setting approaches the recorded climb rate, but changes the inputs from the actual flight and increases time to +50 m. Cruise settings are unchanged.</li>
+<li><strong>Reduce commanded pitch:</strong> the AUTO mission's takeoff minimum is 12°. Lowering that minimum to 5° alone does not restrict a higher TECS demand. Adding <code>TECS_PITCH_MAX=10</code> limits the navigation pitch request, with the existing +4° pitch trim still applied downstream. Pitch improves, but excess power produces more airspeed: almost 30 m/s in this test. This is not an effective standalone way to match climb.</li>
+<li><strong>Lower the TECS climb setting:</strong> <code>TECS_CLMB_MAX=2</code> does not impose a 2 m/s takeoff cap in this pinned ArduPlane 4.5.6 run. Takeoff pitch prioritizes airspeed, and the takeoff logic imposes a minimum pitch. Its role in ordinary altitude tracking differs from takeoff. Changing <code>TKOFF_LVL_PITCH</code> would target TAKEOFF mode rather than the AUTO mission command used here.</li>
+<li><strong>Improve physical fidelity while keeping actual parameters:</strong> retain the shared BIN-matched configuration, match the real mission/controls and loading, then investigate full-power shaft output, propeller thrust, drag and flap effects. The model's 4.5 hp rating is an unverified seed assumption. Cruise RPM calibration does not identify full-throttle thrust. Do not use a climb match alone to select new aerodynamic coefficients.</li></ol>
+<p>ArduPilot's <a href="https://ardupilot.org/plane/docs/automatic-takeoff.html">automatic takeoff documentation</a> describes the takeoff pitch and throttle controls. The tested behavior above is checked against the pinned 4.5.6 source: <a href="../../vendor/ardupilot/ArduPlane/takeoff.cpp">takeoff pitch selection</a> and <a href="../../vendor/ardupilot/libraries/AP_TECS/AP_TECS.cpp">TECS takeoff speed weighting and limits</a>. Newer documentation includes controls unavailable in this pinned version.</p>
+<h2>Airspeed tradeoff</h2><img src="climb_options_airspeed.png" alt="Airspeed comparison for each option; limiting pitch increases airspeed substantially.">
+<details><summary>Height gained over time</summary><img src="climb_options_height.png" alt="Relative height over time for each climb-control option."></details>
+<p class="note">The shared settings in <code>config/sitl.parm</code> remain matched to the BIN snapshot. <code>config/models/tig_da35_cruise.parm</code> adds the approved 75% takeoff limit for this model. No engine or aerodynamic coefficients were changed. The experiments do not establish broad fidelity or validate landing behavior, flap aerodynamics or electric assistance.</p>
+<p>To repeat the tested throttle-limited simulation with its isolated parameter file:</p>
+<pre>python3 scripts/run_sitl.py --model tig_da35_cruise --name my_climb_test --param-file runtime/da35_climb_options/inputs/throttle_cap_75/sitl.parm --profile --duration 75</pre>
+<p>Recreate all four experiments: <code>python3 scripts/investigate_da35_climb.py --run</code>. Redraw saved results without flying again: <code>python3 scripts/investigate_da35_climb.py</code>.</p>
+<p><a href="climb_options.csv">Metrics</a> · <a href="climb_options_provenance.json">Experimental settings</a> · <a href="climb_option_actual.csv">Actual samples</a> · <a href="climb_option_baseline.csv">Baseline samples</a> · <a href="climb_option_throttle_cap_75.csv">Throttle-limited samples</a></p></html>

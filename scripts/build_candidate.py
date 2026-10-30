@@ -8,10 +8,18 @@ import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
-    c=json.loads((ROOT/'config/calibration.json').read_text())
-    dest=ROOT/'aircraft/tig_calibrated'
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--config',type=Path,default=ROOT/'config/calibration.json')
+    parser.add_argument('--model',default='tig_calibrated')
+    args=parser.parse_args()
+    import re
+    if not re.fullmatch(r'[A-Za-z0-9_-]+', args.model) or args.model == 'tig':
+        parser.error('--model must be a simple model name other than the original tig seed')
+    c=json.loads(args.config.read_text())
+    dest=ROOT/'aircraft'/args.model
     shutil.copytree(ROOT/'aircraft/tig',dest,dirs_exist_ok=True)
-    tree=ET.parse(dest/'tig.xml');r=tree.getroot();r.set('name','tig_calibrated')
+    tree=ET.parse(dest/'tig.xml');r=tree.getroot();r.set('name',args.model)
     r.find('fileheader/description').text='Provisional Tiguar log-conditioned candidate. See config/calibration.json and config/model_assumptions.json; CG/yaw inertia/gear geometry are priors.'
     for tag,value in [('wingarea',c['area_m2']),('wingspan',c['span_m'])]:r.find('metrics/'+tag).text=str(value)
     cr=c['root_chord_m'];ct=c['tip_chord_m'];taper=ct/cr
@@ -74,7 +82,7 @@ def main():
                  'moments/m-aero-lbsft','moments/m-prop-lbsft','moments/m-total-lbsft',
                  'aero/coefficient/Cm0','aero/coefficient/Cmalpha','aero/coefficient/Cmde','aero/coefficient/Cmq']:
         ET.SubElement(output,'property').text=name
-    ET.indent(tree);tree.write(dest/'tig_calibrated.xml',encoding='utf-8',xml_declaration=True)
+    ET.indent(tree);tree.write(dest/f'{args.model}.xml',encoding='utf-8',xml_declaration=True)
     (dest/'tig.xml').unlink()
     assumptions={'loaded_mass_kg':c['mass_kg'],'loaded_cg_m':[.94,0,0],
         'loaded_diagonal_inertia_kgm2':inertias,
@@ -84,21 +92,12 @@ def main():
         'cg_note':'Unmeasured: nominal x datum retained, vertical CG aligned with thrust datum. Initial seed offset caused pitch-up/stall.',
         'gear_note':'Gear included in 55 lb. Tricycle layout from manual; 0.713 m track from drawing. Fore-aft contact positions and 0.35 m height are provisional. Spring/damping retained; rolling friction reduced to 0.03.',
         'controls_note':'Equivalent elevator/rudder used; ±20 degree seed travel retained, not physical ±28 degree ruddervator travel. Flaps excluded from calibration; no validated landing model.'}
-    (ROOT/'config/model_assumptions.json').write_text(json.dumps(assumptions,indent=2))
-    # Extract flight-controller settings only; hardware output assignments are intentionally remapped.
-    p=json.loads((ROOT/'analysis/2026-05-01/parameters_final.json').read_text())
-    prefixes=('RLL_','RLL2SRV_','PTCH_','PTCH2SRV_','TECS_','NAVL1_','AIRSPEED_')
-    selected={k:v for k,v in p.items() if k.startswith(prefixes)}
-    selected.update({'SERVO1_FUNCTION':4,'SERVO2_FUNCTION':19,'SERVO3_FUNCTION':70,'SERVO4_FUNCTION':21,
-                     'SERVO1_REVERSED':0,'SERVO2_REVERSED':1,'SERVO3_REVERSED':0,'SERVO4_REVERSED':1,
-                     'ARSPD_USE':1,'TRIM_THROTTLE':p['TRIM_THROTTLE'],'THR_MAX':100,'THR_MIN':0,
-                     'ROLL_LIMIT_DEG':35,'WP_LOITER_RAD':170,'LOG_DISARMED':1,'LOG_BITMASK':65535,
-                     'SIM_WIND_SPD':0,'SIM_WIND_TURB':0,'TERRAIN_ENABLE':0,
-                     'ARMING_CHECK':0,'FS_GCS_ENABL':0,'THR_FAILSAFE':0,'FLTMODE_CH':0,
-                     'TKOFF_THR_MINACC':0,'TKOFF_THR_MINSPD':0})
-    for ch in range(1,5):
-        selected.update({f'SERVO{ch}_MIN':1000,f'SERVO{ch}_MAX':2000,f'SERVO{ch}_TRIM':1000 if ch==3 else 1500})
-    (ROOT/'config/sitl.parm').write_text('# SIMULATION ONLY: equivalent axes on outputs 1-4; do not load onto hardware.\n'+''.join(f'{k} {v:g}\n' for k,v in sorted(selected.items())))
+    if args.model == 'tig_calibrated':
+        (ROOT/'config/model_assumptions.json').write_text(json.dumps(assumptions,indent=2))
+    # Keep parameter generation consistent with the takeoff-time BIN snapshot.
+    if args.model == 'tig_calibrated':
+        from match_sitl_parameters import generate
+        generate()
     print('Wrote',dest)
 
 if __name__=='__main__':main()

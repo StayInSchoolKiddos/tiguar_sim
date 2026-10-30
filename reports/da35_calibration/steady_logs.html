@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>DA35 comparison with flight logs</title><style>body{font:16px system-ui;max-width:1100px;margin:40px auto}img{width:100%}td,th{padding:8px}</style><h1>DA35 comparison with recorded steady flight</h1><p>Fixed models scored at each recorded throttle, true airspeed and density. No parameters were refitted. Both models use the same supported windows. April 30 was held out from the original log fit; overlap between these logs and the cruise spreadsheet is unknown.</p><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>date</th>
+      <th>model</th>
+      <th>windows</th>
+      <th>rpm_rmse</th>
+      <th>rpm_bias</th>
+      <th>climb_rmse_mps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2026-04-30</td>
+      <td>tig_calibrated</td>
+      <td>7</td>
+      <td>359.29</td>
+      <td>350.39</td>
+      <td>1.53</td>
+    </tr>
+    <tr>
+      <td>2026-04-30</td>
+      <td>tig_da35</td>
+      <td>7</td>
+      <td>367.93</td>
+      <td>359.07</td>
+      <td>1.55</td>
+    </tr>
+    <tr>
+      <td>2026-05-01</td>
+      <td>tig_calibrated</td>
+      <td>31</td>
+      <td>503.82</td>
+      <td>486.99</td>
+      <td>0.84</td>
+    </tr>
+    <tr>
+      <td>2026-05-01</td>
+      <td>tig_da35</td>
+      <td>31</td>
+      <td>485.37</td>
+      <td>469.27</td>
+      <td>0.81</td>
+    </tr>
+  </tbody>
+</table><img src="steady_log_comparison.png"><p>Climb is inferred from modeled thrust and the existing drag/energy balance with recorded acceleration and bank. This is not a coupled flight replay. Propeller coefficients, windmilling, electric assistance and aircraft configuration remain uncertain.</p><p><a href="index.html">DA35 report</a> · <a href="steady_log_predictions.csv">Per-window data</a></p></html>

@@ -3,14 +3,20 @@
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 tiguar_root="$PWD"
+tiguar_model=tig_calibrated
 if [[ "${1:-}" == "--help" ]]; then
-  echo 'Usage: ./run_tiguar.sh'
+  echo 'Usage: ./run_tiguar.sh [--model tig_calibrated|tig_da35|tig_da35_cruise]'
   echo 'Starts MAVProxy with map and console windows; aircraft disarmed on the ground.'
   echo 'Type exit in MAVProxy to stop both simulators.'
   exit 0
 fi
-if [[ $# -ne 0 ]]; then
-  echo 'Use ./run_tiguar.sh without arguments; see --help.' >&2
+if [[ $# -eq 2 && "$1" == '--model' ]]; then
+  case "$2" in
+    tig_calibrated|tig_da35|tig_da35_cruise) tiguar_model="$2" ;;
+    *) echo 'Unknown Tiguar model; see --help.' >&2; exit 1 ;;
+  esac
+elif [[ $# -ne 0 ]]; then
+  echo 'Invalid arguments; see --help.' >&2
   exit 1
 fi
 for binary in vendor/ardupilot/build/sitl/bin/arduplane vendor/jsbsim/build/src/JSBSim; do
@@ -36,14 +42,20 @@ flock -n 9 || {
 }
 tiguar_work="$tiguar_root/runtime/tiguar_$(date +%Y%m%d_%H%M%S)_$$"
 mkdir -p "$tiguar_work/aircraft"
-cp -R aircraft/tig_calibrated "$tiguar_work/aircraft/"
+cp -R "aircraft/$tiguar_model" "$tiguar_work/aircraft/"
 cp config/sitl.parm "$tiguar_work/sitl.parm"
+tiguar_overlay="config/models/$tiguar_model.parm"
+if [[ -f "$tiguar_overlay" ]]; then
+  awk 'NR==FNR { if (NF && $1 !~ /^#/) keys[$1]=1; next } !($1 in keys)' \
+    "$tiguar_overlay" config/sitl.parm > "$tiguar_work/sitl.parm"
+  cat "$tiguar_overlay" >> "$tiguar_work/sitl.parm"
+fi
 printf '\nINITIAL_MODE 0\n' >> "$tiguar_work/sitl.parm"
 export PATH="$tiguar_root/vendor/jsbsim/build/src:$PATH"
 export JSBSIM_DEBUG=0
 cd "$tiguar_work"
 
-echo "Results: $tiguar_work"
+echo "Model: $tiguar_model; results: $tiguar_work"
 echo 'Starting MAVProxy: aircraft stays disarmed in MANUAL on the ground.'
 echo 'Opening map and console windows (requires a desktop display).'
 echo 'Type exit in MAVProxy to stop. Optional ground station: UDP port 14550.'
@@ -68,7 +80,7 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 "$tiguar_root/vendor/ardupilot/build/sitl/bin/arduplane" \
   -w \
-  --model jsbsim:tig_calibrated \
+  --model "jsbsim:$tiguar_model" \
   --home 38.6961834,-94.2578576,273,0 \
   --speedup 1 \
   --defaults "$tiguar_root/vendor/ardupilot/Tools/autotest/default_params/plane-jsbsim.parm,$tiguar_work/sitl.parm" \

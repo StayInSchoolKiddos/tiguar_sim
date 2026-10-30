@@ -77,7 +77,11 @@ The launcher uses `aircraft/tig_calibrated/`:
 
 Keep the whole aircraft folder together. The launcher copies it into each run folder automatically. You do not need to copy files into ArduPilot or launch JSBSim separately. The original `aircraft/tig/` is retained as a reference.
 
+The [fleet cruise calibration report](reports/cruise_calibration/index.html) shows the spreadsheet RPM fit, before/after engine power, speed sensitivity, and flight-test acceptance status. See [the calibration commands](README.md#fleet-average-cruise-engine-calibration) to regenerate it after changing the CSV.
+
 The model is provisional. **`config/sitl.parm` is for simulation only; do not load it onto real aircraft hardware.**
+
+All Tiguar variants share a BIN-derived flight-control base. The `tig_da35_cruise` model adds the approved `TKOFF_THR_MAX=75` default from `config/models/tig_da35_cruise.parm`. Launch it with `./run_tiguar.sh --model tig_da35_cruise`; the no-argument launcher still uses `tig_calibrated`. Run `python3 scripts/match_sitl_parameters.py` to regenerate it from the May 1 takeoff snapshot. The matching includes speed scaling, takeoff settings, control gains, navigation and flight-mode behavior; simulator output mappings and hardware-specific sensor settings are exceptions documented in `config/sitl.audit.json`. Restart a running simulator to load a regenerated configuration. See [the pitch and parameter investigation](reports/da35_cruise_analysis/pitch_investigation.html) for comparisons and validation.
 
 ## If something goes wrong
 

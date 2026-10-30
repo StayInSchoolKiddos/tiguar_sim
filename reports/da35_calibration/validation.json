@@ -1,0 +1,82 @@
+{
+  "cruise_rms_error_pct": 1.1249733358058637e-06,
+  "cruise_max_error_pct": 2.335973825484672e-06,
+  "all_points_converged": true,
+  "cold_start_pass": true,
+  "ignition_shutdown_pass": true,
+  "starvation_shutdown_pass": true,
+  "max_full_throttle_rpm": 8730.779623472663,
+  "exceeds_manual_range": true,
+  "sitl_status": "Completed 620-second profile; pipeline checks passed.",
+  "default_changed": false,
+  "recommendation": "Keep the current default. Review rated power, propeller loading, electric boost timing and real-flight errors before considering promotion.",
+  "sitl_pipeline_pass": true,
+  "sitl_run": "runtime/da35_validation_retry",
+  "settled_phases": [
+    {
+      "mission_seq": 3,
+      "target_alt": 100,
+      "mean_alt": 100.00492499999999,
+      "target_eas": 23,
+      "mean_eas": 22.99837184906006
+    },
+    {
+      "mission_seq": 5,
+      "target_alt": 100,
+      "mean_alt": 99.99915000000001,
+      "target_eas": 25,
+      "mean_eas": 25.015958166122438
+    },
+    {
+      "mission_seq": 7,
+      "target_alt": 130,
+      "mean_alt": 130.093505,
+      "target_eas": 23,
+      "mean_eas": 23.009413146972655
+    },
+    {
+      "mission_seq": 8,
+      "target_alt": 100,
+      "mean_alt": 100.14563,
+      "target_eas": 23,
+      "mean_eas": 22.998721342086792
+    },
+    {
+      "mission_seq": 9,
+      "target_alt": 100,
+      "mean_alt": 99.948935,
+      "target_eas": 23,
+      "mean_eas": 23.003869857788086
+    }
+  ],
+  "standalone_takeoff": [
+    {
+      "model": "tig_calibrated",
+      "seconds_from_throttle_ramp_to_50m": 25.3,
+      "reached_50m": true,
+      "max_rpm": 7429.389328580348,
+      "max_rpm_after_12_mps": 7429.389328580348,
+      "note": "Identical simple pilot, flaps up; not coupled ArduPilot or real-flight validation"
+    },
+    {
+      "model": "tig_da35",
+      "seconds_from_throttle_ramp_to_50m": 17.35,
+      "reached_50m": true,
+      "max_rpm": 9138.88200741002,
+      "max_rpm_after_12_mps": 9138.88200741002,
+      "note": "Identical simple pilot, flaps up; not coupled ArduPilot or real-flight validation"
+    }
+  ],
+  "real_takeoff_context": [
+    {
+      "date": "2026-04-30",
+      "initial_flap": 50.0,
+      "max_rpm": 8321.0
+    },
+    {
+      "date": "2026-05-01",
+      "initial_flap": 50.0,
+      "max_rpm": 8247.0
+    }
+  ]
+}

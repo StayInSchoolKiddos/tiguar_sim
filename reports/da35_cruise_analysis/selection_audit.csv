@@ -1,0 +1,44 @@
+date,start_s,kind,selected,reason
+2026-05-01,1178.6000000000922,level,True,
+2026-05-01,1258.6000000001104,turn,True,
+2026-05-01,1268.6000000001127,turn,True,
+2026-05-01,1308.6000000001218,turn,True,
+2026-05-01,1318.600000000124,turn,True,
+2026-05-01,1368.6000000001354,turn,True,
+2026-05-01,1378.6000000001377,turn,True,
+2026-05-01,1428.600000000149,turn,True,
+2026-05-01,1438.600000000151,turn,True,
+2026-05-01,1488.6000000001627,turn,True,
+2026-05-01,1518.6000000001695,level,True,
+2026-05-01,1528.6000000001718,level,True,
+2026-05-01,1538.600000000174,level,True,
+2026-05-01,1588.6000000001854,descent,False,not level/turn cruise
+2026-05-01,1598.6000000001875,descent,False,not level/turn cruise
+2026-05-01,2316.100000000351,climb,False,not level/turn cruise; within first 60 s after flight detection
+2026-05-01,2741.200000000448,climb,False,not level/turn cruise; within first 60 s after flight detection
+2026-05-01,2811.200000000464,descent,False,not level/turn cruise; measured propeller advance ratio outside table
+2026-05-01,2891.200000000482,climb,False,not level/turn cruise
+2026-05-01,2901.200000000484,climb,False,not level/turn cruise
+2026-05-01,2951.2000000004955,level,True,
+2026-05-01,2981.200000000502,descent,False,not level/turn cruise
+2026-05-01,3229.7000000005582,climb,False,not level/turn cruise; within first 60 s after flight detection
+2026-05-01,3299.7000000005746,descent,False,not level/turn cruise
+2026-05-01,3309.7000000005764,descent,False,not level/turn cruise; measured propeller advance ratio outside table
+2026-05-01,3641.100000000653,climb,False,not level/turn cruise; within first 60 s after flight detection
+2026-05-01,3701.100000000666,descent,False,not level/turn cruise
+2026-05-01,3711.100000000668,descent,False,not level/turn cruise; measured propeller advance ratio outside table
+2026-05-01,5109.800000000986,descent,False,not level/turn cruise; measured propeller advance ratio outside table
+2026-05-01,5867.200000001159,descent,False,not level/turn cruise
+2026-05-01,6589.800000001323,climb,False,not level/turn cruise; within first 60 s after flight detection
+2026-05-01,6639.8000000013335,level,True,
+2026-05-01,6649.800000001336,climb,False,not level/turn cruise
+2026-05-01,6988.200000001413,climb,False,not level/turn cruise; within first 60 s after flight detection
+2026-05-01,7148.20000000145,descent,False,not level/turn cruise
+2026-04-30,719.9000000000404,climb,False,not level/turn cruise; within first 60 s after flight detection
+2026-04-30,789.9000000000564,descent,False,not level/turn cruise; measured propeller advance ratio outside table
+2026-04-30,889.9000000000791,climb,False,not level/turn cruise
+2026-04-30,899.9000000000814,climb,False,not level/turn cruise
+2026-04-30,919.900000000086,level,True,
+2026-04-30,929.9000000000882,level,True,
+2026-04-30,1069.90000000012,climb,False,not level/turn cruise
+2026-04-30,1419.9000000001995,climb,False,not level/turn cruise

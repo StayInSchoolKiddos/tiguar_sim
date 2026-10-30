@@ -1,0 +1,99 @@
+bin_matched_tig_calibrated 0.0: Barometer 1 calibration complete
+bin_matched_tig_calibrated 0.0: Barometer 2 calibration complete
+bin_matched_tig_calibrated 0.0: Airspeed 1 calibration started
+bin_matched_tig_calibrated 0.0: ArduPilot Ready
+bin_matched_tig_calibrated 0.0: AHRS: DCM active
+bin_matched_tig_calibrated 3.4: Airspeed 1 calibrated
+bin_matched_tig_calibrated 9.1: GPS 1: detected as u-blox at 230400 baud
+bin_matched_tig_calibrated 9.5: EKF2 IMU0 MAG0 initial yaw alignment complete
+bin_matched_tig_calibrated 9.5: EKF2 IMU1 MAG0 initial yaw alignment complete
+bin_matched_tig_calibrated 10.3: EKF3 IMU0 initialised
+bin_matched_tig_calibrated 10.3: EKF3 IMU1 initialised
+bin_matched_tig_calibrated 12.2: EKF3 IMU0 tilt alignment complete
+bin_matched_tig_calibrated 12.2: EKF3 IMU1 tilt alignment complete
+bin_matched_tig_calibrated 12.2: EKF3 IMU0 MAG0 initial yaw alignment complete
+bin_matched_tig_calibrated 12.2: EKF3 IMU1 MAG0 initial yaw alignment complete
+bin_matched_tig_calibrated 14.8: EKF2 IMU0 tilt alignment complete
+bin_matched_tig_calibrated 14.8: EKF2 IMU1 tilt alignment complete
+bin_matched_tig_calibrated 19.5: EKF2 IMU0 origin set
+bin_matched_tig_calibrated 19.5: EKF2 IMU1 origin set
+bin_matched_tig_calibrated 20.5: EKF3 IMU0 origin set
+bin_matched_tig_calibrated 20.5: EKF3 IMU1 origin set
+bin_matched_tig_calibrated 20.5: EKF3 IMU0 is using GPS
+bin_matched_tig_calibrated 20.5: EKF3 IMU1 is using GPS
+bin_matched_tig_calibrated 20.5: AHRS: EKF3 active
+bin_matched_tig_calibrated 20.5: Field Elevation Set: 273m
+bin_matched_tig_calibrated 25.3: Flight plan received
+bin_matched_tig_calibrated 25.3: Mission: 1 Takeoff
+bin_matched_tig_calibrated 25.3: Warning: Arming Checks Disabled
+bin_matched_tig_calibrated 25.3: Throttle armed
+bin_matched_tig_calibrated 25.3: Armed AUTO, xaccel = 0.0 m/s/s, waiting 0.2 sec
+bin_matched_tig_calibrated 25.5: Triggered AUTO. GPS speed = 0.0
+bin_matched_tig_calibrated 30.1: Holding course 35980 at 11.4m/s (0.9)
+bin_matched_tig_calibrated 56.3: EKF2 IMU0 is using GPS
+bin_matched_tig_calibrated 56.3: EKF2 IMU1 is using GPS
+bin_matched_tig_calibrated 56.9: Takeoff level-off starting at 8m
+bin_matched_tig_calibrated 59.2: Takeoff complete at 100.06m
+bin_matched_tig_calibrated 59.2: Mission: 2 WP
+bin_matched_tig_calibrated 72.4: Reached waypoint #2 dist 87m
+bin_matched_tig_calibrated 72.4: Mission: 3 LoitTime
+bin_matched_tig_calibrated 162.6: Loiter time complete
+bin_matched_tig_calibrated 162.6: Mission: 4 ChangeSpeed
+bin_matched_tig_calibrated 162.6: Set airspeed 25 m/s
+bin_matched_tig_calibrated 162.6: Mission: 5 LoitTime
+bin_matched_tig_calibrated 222.8: Loiter time complete
+bin_matched_tig_calibrated 222.8: Mission: 6 ChangeSpeed
+bin_matched_tig_calibrated 222.8: Set airspeed 23 m/s
+bin_matched_tig_calibrated 222.8: Mission: 7 LoitTime
+bin_matched_tig_calibrated 313.0: Loiter time complete
+bin_matched_tig_calibrated 313.0: Mission: 8 LoitTime
+bin_matched_tig_calibrated 403.2: Loiter time complete
+bin_matched_tig_calibrated 403.2: Mission: 9 LoitTime
+bin_matched_tig_calibrated 494.1: Loiter time complete
+bin_matched_tig_calibrated 494.1: Mission: 10 LoitUnlim
+{
+  "model": "tig_calibrated",
+  "sim_end_s": 645.106,
+  "wall_duration_s": 158.93859032201,
+  "valid": true,
+  "profile": true,
+  "max_alt_m": 131.511,
+  "last60_mean": {
+    "t": 615.0559999999999,
+    "mode": 10.0,
+    "armed": 1.0,
+    "roll": -18.759047295152172,
+    "pitch": 0.09054795585359851,
+    "yaw": -4.86230447438182,
+    "p": 0.009192054266265282,
+    "q": 0.040924690794199706,
+    "r": -0.12039533798893293,
+    "alt": 99.98969166666667,
+    "lat": 38.70531848733334,
+    "lon": -94.25754561933333,
+    "climb": 0.0016500000000000002,
+    "mission_seq": 10.0,
+    "eas": 23.00555142402649,
+    "groundspeed": 23.940472428003947,
+    "throttle_pct": 19.231666666666666
+  },
+  "last60_std": {
+    "t": 17.334935823359714,
+    "mode": 0.0,
+    "armed": 0.0,
+    "roll": 0.06963433543679345,
+    "pitch": 0.156282709504164,
+    "yaw": 95.5457213342678,
+    "p": 0.0015694129267520374,
+    "q": 0.0010871783500143602,
+    "r": 0.0008430753828921226,
+    "alt": 0.021070672017150963,
+    "lat": 0.0011478421976578877,
+    "lon": 0.0015512194652732225,
+    "climb": 0.012703534927968286,
+    "mission_seq": 0.0,
+    "eas": 0.028161461982493766,
+    "groundspeed": 0.040117692586207614,
+    "throttle_pct": 0.42224919126201366
+  }
+}

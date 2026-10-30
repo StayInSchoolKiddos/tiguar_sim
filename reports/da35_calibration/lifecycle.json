@@ -1,0 +1,57 @@
+{
+  "cold_start": {
+    "throttle": 0.0,
+    "rpm": 1650.0000001791914,
+    "converged": true,
+    "seconds": 4,
+    "power_w": 19.884529156124476,
+    "thrust_n": 5.014709071031945,
+    "running": true,
+    "fuel_flow_kg_s": 8.038452028542327e-06,
+    "fuel_kg": 0.49996473107138206
+  },
+  "full_static": {
+    "throttle": 1.0,
+    "rpm": 8730.779623471657,
+    "converged": true,
+    "seconds": 4,
+    "power_w": 2945.930909089644,
+    "thrust_n": 140.40543077226158,
+    "running": true,
+    "fuel_flow_kg_s": 0.000190755057135955,
+    "fuel_kg": 0.4992426110268573
+  },
+  "return_to_idle": {
+    "throttle": 0.0,
+    "rpm": 1650.0000004692013,
+    "converged": true,
+    "seconds": 4,
+    "power_w": 19.88452917783244,
+    "thrust_n": 5.014709072792268,
+    "running": true,
+    "fuel_flow_kg_s": 8.038452030798905e-06,
+    "fuel_kg": 0.4991984008040796
+  },
+  "ignition_off": {
+    "throttle": 0.0,
+    "rpm": 0.0,
+    "converged": true,
+    "seconds": 3,
+    "power_w": -22.371000000000002,
+    "thrust_n": 0.0,
+    "running": false,
+    "fuel_flow_kg_s": 0.0,
+    "fuel_kg": 0.4991968669194753
+  },
+  "fuel_starved": {
+    "throttle": 0.45,
+    "rpm": 0.0,
+    "converged": true,
+    "seconds": 4,
+    "power_w": -22.371000000000002,
+    "thrust_n": 0.0,
+    "running": false,
+    "fuel_flow_kg_s": 0.0,
+    "fuel_kg": 0.0
+  }
+}

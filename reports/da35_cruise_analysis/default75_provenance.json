@@ -1,0 +1,17 @@
+{
+  "full_mission": {
+    "run": "runtime/da35_default75_validation",
+    "parameters_sha256": "98f4ff0b238fc6b7a381e9bab609edac529f3be1d1f6053fe3b41952c41b745c",
+    "bin_sha256": "4e3321f82ed70e6ce6e730db639fac0b2e4d1fe9870e24391a15c51e47bd267f"
+  },
+  "straight_cruise": {
+    "run": "runtime/da35_default75_straight",
+    "parameters_sha256": "98f4ff0b238fc6b7a381e9bab609edac529f3be1d1f6053fe3b41952c41b745c",
+    "bin_sha256": "fb36668d4b8aa296fe45f5c513655cd578635d4e98f54f4cfaa42e8a5f95b8f8"
+  },
+  "previous_default": {
+    "run": "runtime/da35_bin_matched_final",
+    "parameters_sha256": "166f66486d139b28ae226317c54fe9e49a81593fd9e3f4ea32f9cb89d4ade0b4",
+    "bin_sha256": "43727c7ebebf9c98153043ea2f6740450d63917db4dfb26a5a33f750ca3f59ee"
+  }
+}

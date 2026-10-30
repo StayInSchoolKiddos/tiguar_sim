@@ -1,0 +1,187 @@
+{
+  "model": "tig_da35",
+  "status": "candidate_only",
+  "reference_tas_mps": 23,
+  "reference_rho_kg_m3": 1.139585493890795,
+  "reference_altitude_ft": 2449.695297168569,
+  "throttle_to_butterfly": [
+    [
+      0.0,
+      0.1629667347633385
+    ],
+    [
+      0.125,
+      0.5302207522665195
+    ],
+    [
+      0.175,
+      0.6178089857512052
+    ],
+    [
+      0.225,
+      0.6758364083410975
+    ],
+    [
+      0.275,
+      0.7174686463886288
+    ],
+    [
+      0.35,
+      0.7525774229390819
+    ],
+    [
+      0.45,
+      0.7872103920258969
+    ],
+    [
+      0.55,
+      0.8110879767504451
+    ],
+    [
+      0.7,
+      0.8268538389736989
+    ],
+    [
+      0.9,
+      0.854960753951361
+    ],
+    [
+      1.0,
+      1.0
+    ]
+  ],
+  "source_sha256": "29bf866e8bf24f0e86934613b52b70008e9bf82353bd6ea7e1e8c1fa36420855",
+  "engine_sha256": "e4199efdccd1ac5076472bd28a03c228dcc732d7eef98084edb187e96d084d07",
+  "airframe_source_sha256": "e3c11a335f314fdf17d219cd3165af251c5342909fef8fbb72383ff7a03f3a04",
+  "confirmed_from_tiguar_manual_page_8": {
+    "displacement_cc": 35,
+    "cycles": 2,
+    "cylinders": 1,
+    "idle_rpm": 1650,
+    "operating_max_rpm": 7800
+  },
+  "assumptions": [
+    "4.5 hp retained from seed XML; rated power not verified by manufacturer.",
+    "Bore 38.1 mm assumed; stroke derived from displacement. These are not measured engine dimensions.",
+    "Manifold lag, friction, volumetric efficiency, compression and thermal parameters are unmeasured priors.",
+    "Fixed mixture 0.85; fuel consumption/temperature are model predictions, not calibrated measurements.",
+    "JSBSim piston airflow uses RPM/2 even with cycles=2; this remains a two-stroke approximation.",
+    "Nominal 23 m/s TAS and equal weights for four columns; sample counts unknown.",
+    "Zero command is static idle, not shutdown; ignition property 0 stops combustion.",
+    "Three-second starting assistance stands in for a hand start; no automatic in-flight restart.",
+    "No electric assistance in this candidate. User recalls takeoff/initial-climb boost only; exact time intervals and output unknown. Cruise calibration is conditional on excluding boosted samples.",
+    "Butterfly opens fully at 100%; 90\u2013100% response is unmeasured.",
+    "Existing propeller sense preserved: manual CCW viewpoint is not specified."
+  ],
+  "external_verification": "Manufacturer product page checked; 35 cc and 1500\u20138200 RPM published, no horsepower rating. See config/da35_evidence.json.",
+  "evidence": {
+    "user_recollection": "Approximately 20% electric assistance during takeoff or initial climb only, reported 2026-10-29. Exact shaft power, time intervals and exclusion of boosted samples from the cruise CSV are unverified.",
+    "manual": {
+      "file": "S-410 Tiguar User Manual v3.0 1 (2).pdf",
+      "propulsion_section": "4.1",
+      "nominal_takeoff_power_boost_fraction": 0.5,
+      "electric_motor_label": "Brushless, 2200W 230KV",
+      "propeller_label": "20x10 CCW",
+      "note": "Nominal system descriptions, not measured boost power in these flight logs."
+    },
+    "manufacturer": {
+      "url": "https://www.desertaircraft.com/products/da-35",
+      "checked_date": "2026-10-29",
+      "displacement_cc": 35,
+      "rpm_range": [
+        1500,
+        8200
+      ],
+      "rated_horsepower": null,
+      "note": "Product page does not state rated horsepower. Range differs from supplied Tiguar manual; exact installed variant unknown."
+    },
+    "reported_boost": {
+      "approximate_assistance_percent": 20,
+      "phase": "takeoff or initial climb",
+      "description": "User described 20% assistance, not a motor control setting. Physical power basis remains unverified.",
+      "applied_to_model": false
+    }
+  },
+  "validation": {
+    "cruise_rms_error_pct": 1.1249733358058637e-06,
+    "cruise_max_error_pct": 2.335973825484672e-06,
+    "all_points_converged": true,
+    "cold_start_pass": true,
+    "ignition_shutdown_pass": true,
+    "starvation_shutdown_pass": true,
+    "max_full_throttle_rpm": 8730.779623472663,
+    "exceeds_manual_range": true,
+    "sitl_status": "Completed 620-second profile; pipeline checks passed.",
+    "default_changed": false,
+    "recommendation": "Keep the current default. Review rated power, propeller loading, electric boost timing and real-flight errors before considering promotion.",
+    "sitl_pipeline_pass": true,
+    "sitl_run": "runtime/da35_validation_retry",
+    "settled_phases": [
+      {
+        "mission_seq": 3,
+        "target_alt": 100,
+        "mean_alt": 100.00492499999999,
+        "target_eas": 23,
+        "mean_eas": 22.99837184906006
+      },
+      {
+        "mission_seq": 5,
+        "target_alt": 100,
+        "mean_alt": 99.99915000000001,
+        "target_eas": 25,
+        "mean_eas": 25.015958166122438
+      },
+      {
+        "mission_seq": 7,
+        "target_alt": 130,
+        "mean_alt": 130.093505,
+        "target_eas": 23,
+        "mean_eas": 23.009413146972655
+      },
+      {
+        "mission_seq": 8,
+        "target_alt": 100,
+        "mean_alt": 100.14563,
+        "target_eas": 23,
+        "mean_eas": 22.998721342086792
+      },
+      {
+        "mission_seq": 9,
+        "target_alt": 100,
+        "mean_alt": 99.948935,
+        "target_eas": 23,
+        "mean_eas": 23.003869857788086
+      }
+    ],
+    "standalone_takeoff": [
+      {
+        "model": "tig_calibrated",
+        "seconds_from_throttle_ramp_to_50m": 25.3,
+        "reached_50m": true,
+        "max_rpm": 7429.389328580348,
+        "max_rpm_after_12_mps": 7429.389328580348,
+        "note": "Identical simple pilot, flaps up; not coupled ArduPilot or real-flight validation"
+      },
+      {
+        "model": "tig_da35",
+        "seconds_from_throttle_ramp_to_50m": 17.35,
+        "reached_50m": true,
+        "max_rpm": 9138.88200741002,
+        "max_rpm_after_12_mps": 9138.88200741002,
+        "note": "Identical simple pilot, flaps up; not coupled ArduPilot or real-flight validation"
+      }
+    ],
+    "real_takeoff_context": [
+      {
+        "date": "2026-04-30",
+        "initial_flap": 50.0,
+        "max_rpm": 8321.0
+      },
+      {
+        "date": "2026-05-01",
+        "initial_flap": 50.0,
+        "max_rpm": 8247.0
+      }
+    ]
+  }
+}

@@ -67,9 +67,17 @@ These channels describe equivalent elevator/rudder controls, not a detailed phys
 
 ### Engine and propeller
 
-The selected engine is an `<electric_engine>` with **2363.44 W** maximum modeled power. This is a convenient shaft-power source, not a claim that the real DA35 is electric. The main aircraft XML contains the fitted throttle-to-power lookup table; editing maximum power alone rescales that table's physical output.
+For analysis of the recorded cruise flights, `aircraft/tig_da35_cruise/` is a separate empirically tuned DA35 variant. Its `fcs/da35-carburetor` table incorporates the correction in `config/da35_cruise_tuning.json`; `scripts/tune_da35_cruise.py` generates it. Engine and propeller XML remain byte-for-byte identical to the DA35 candidate. See the [cruise analysis report](reports/da35_cruise_analysis/index.html) for the fitting/held-out split and accuracy limits. The normal launcher does not select this experimental variant.
 
-The approximate fitted relationship is `power_W = 876*u + 1488*u²`, where `u` is normalized throttle. High-throttle values are extrapolated. Gasoline-engine idle, fuel consumption, throttle delay, and separate hybrid boost are not explicitly represented. The tank still contributes mass; the equivalent engine does not burn its fuel.
+A separate **DA35 piston candidate** is available in `aircraft/tig_da35/`. Its main XML selects `file="DA35"`; `config/DA35.xml` is the engine source, and `scripts/da35_calibration.py` generates its throttle-to-carburetor linkage from the cruise CSV. That candidate uses native manifold-pressure, mixture, fuel-flow and piston-power calculations. It has a provisional static idle at zero throttle, a three-second simulated starting assist, and ignition shutdown via `propulsion/da35-ignition=0`. Its parameters and full-throttle behavior remain provisional; see the [DA35 report](reports/da35_calibration/index.html). It has not replaced the default described below.
+
+The selected engine is an `<electric_engine>` with **1616.46 W** maximum modeled power after the fleet cruise calibration. This is a convenient shaft-power source, not a claim that the real DA35 is electric. The main aircraft XML contains the fitted throttle-to-power lookup table; editing maximum power alone rescales that table's physical output.
+
+The relationship is now a piecewise-linear table fitted to the equal-weight mean of the four columns in `rpm_cruise_by_aircraft.csv`, using throttle-bin midpoints at provisional 23 m/s TAS and density 1.1397 kg/m³. Nine bins from 10–15% through 80–100% are supported by the existing propeller table at their fleet-average RPM. The three lower bins are excluded: the low-power curve retains the old shape rescaled to the first supported target. Power is held constant from the final measured midpoint (90%) through full throttle.
+
+The previous approximate relationship, `power_W = 876*u + 1488*u²`, is archived in `config/log_calibration_baseline.json`. The new curve supplies more power through much of the mid-throttle range and less at high throttle. See the [cruise report](reports/cruise_calibration/index.html) for plots and the increased errors against the original flight logs. Regenerate the model through the [calibration workflow](README.md#fleet-average-cruise-engine-calibration), rather than editing generated XML alone.
+
+Gasoline-engine idle, fuel consumption, throttle delay, and separate hybrid boost are not explicitly represented. The tank still contributes mass; the equivalent engine does not burn its fuel.
 
 The propeller file contains:
 

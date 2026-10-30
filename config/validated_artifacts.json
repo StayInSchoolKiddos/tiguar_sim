@@ -1,9 +1,13 @@
 {
-  "aircraft/tig_calibrated/tig_calibrated.xml": "f70254a0a586808408b5aea073ef815ecc8cb66d8047ecf3ad1fbfd388aec2ad",
-  "aircraft/tig_calibrated/Engine/empirical_power.xml": "9a008db1f308a56a38baa4b326811a1fd9c0457795730380041f74f3805ab0db",
+  "aircraft/tig_calibrated/tig_calibrated.xml": "e3c11a335f314fdf17d219cd3165af251c5342909fef8fbb72383ff7a03f3a04",
+  "aircraft/tig_calibrated/Engine/empirical_power.xml": "1d42f45d71a7642a7ec8490904a15df046f2b27019a0231009a560e7af801af1",
   "aircraft/tig_calibrated/Engine/Tiguar_20x10_CCW.xml": "11617312750e769e802f72941129ad3493fe7811ad1cc196ecd9c77769567376",
-  "config/sitl.parm": "01966fe547e4a11521584356ec78247563846a24c0b191cc6d68322cfabe6e32",
-  "config/calibration.json": "f6cfeedce8267c46286fbe7bcd14737b9226b6538a9060dd662b99733586f737",
+  "config/sitl.parm": "166f66486d139b28ae226317c54fe9e49a81593fd9e3f4ea32f9cb89d4ade0b4",
+  "config/calibration.json": "a56e66cb95bcd4adf9450caf364cca95dc1ec36919ffdf7e49e5e0d418904c00",
   "config/model_assumptions.json": "190fa25375a38659dd3455422b7ce39457b7ac47a586d6fa4c2cdeeae66f75dd",
-  "aircraft/tig/tig.xml": "d98b135d04db8abafc529654646a1880223fdc5364cc6f805d884113a752359e"
+  "aircraft/tig/tig.xml": "d98b135d04db8abafc529654646a1880223fdc5364cc6f805d884113a752359e",
+  "rpm_cruise_by_aircraft.csv": "29bf866e8bf24f0e86934613b52b70008e9bf82353bd6ea7e1e8c1fa36420855",
+  "config/cruise_calibration.json": "a56e66cb95bcd4adf9450caf364cca95dc1ec36919ffdf7e49e5e0d418904c00",
+  "config/sitl.audit.json": "995b6ba425ad362ec7b3493dc9adb0d5623ad5f429e2f1f710fb669abb5d2c73",
+  "config/models/tig_da35_cruise.parm": "e354c756ab858f131389079a6e817ff54681d48e7dd6cd6a51f3af6bc6f51607"
 }

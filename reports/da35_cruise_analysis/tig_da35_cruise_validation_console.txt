@@ -1,0 +1,99 @@
+da35_bin_matched_final 0.0: Barometer 1 calibration complete
+da35_bin_matched_final 0.0: Barometer 2 calibration complete
+da35_bin_matched_final 0.0: Airspeed 1 calibration started
+da35_bin_matched_final 0.0: ArduPilot Ready
+da35_bin_matched_final 0.0: AHRS: DCM active
+da35_bin_matched_final 3.4: Airspeed 1 calibrated
+da35_bin_matched_final 9.1: GPS 1: detected as u-blox at 230400 baud
+da35_bin_matched_final 9.5: EKF2 IMU0 MAG0 initial yaw alignment complete
+da35_bin_matched_final 9.5: EKF2 IMU1 MAG0 initial yaw alignment complete
+da35_bin_matched_final 10.3: EKF3 IMU0 initialised
+da35_bin_matched_final 10.3: EKF3 IMU1 initialised
+da35_bin_matched_final 12.2: EKF3 IMU0 tilt alignment complete
+da35_bin_matched_final 12.2: EKF3 IMU1 tilt alignment complete
+da35_bin_matched_final 12.2: EKF3 IMU0 MAG0 initial yaw alignment complete
+da35_bin_matched_final 12.2: EKF3 IMU1 MAG0 initial yaw alignment complete
+da35_bin_matched_final 14.8: EKF2 IMU0 tilt alignment complete
+da35_bin_matched_final 14.8: EKF2 IMU1 tilt alignment complete
+da35_bin_matched_final 19.5: EKF2 IMU0 origin set
+da35_bin_matched_final 19.5: EKF2 IMU1 origin set
+da35_bin_matched_final 20.5: EKF3 IMU0 origin set
+da35_bin_matched_final 20.5: EKF3 IMU1 origin set
+da35_bin_matched_final 20.5: EKF3 IMU0 is using GPS
+da35_bin_matched_final 20.5: EKF3 IMU1 is using GPS
+da35_bin_matched_final 20.5: AHRS: EKF3 active
+da35_bin_matched_final 20.5: Field Elevation Set: 273m
+da35_bin_matched_final 25.3: Flight plan received
+da35_bin_matched_final 25.3: Mission: 1 Takeoff
+da35_bin_matched_final 25.3: Warning: Arming Checks Disabled
+da35_bin_matched_final 25.3: Throttle armed
+da35_bin_matched_final 25.3: Armed AUTO, xaccel = 0.0 m/s/s, waiting 0.2 sec
+da35_bin_matched_final 25.5: Triggered AUTO. GPS speed = 0.0
+da35_bin_matched_final 29.9: Holding course 35976 at 13.9m/s (1.0)
+da35_bin_matched_final 45.1: Takeoff level-off starting at 15m
+da35_bin_matched_final 47.3: Takeoff complete at 100.35m
+da35_bin_matched_final 47.3: Mission: 2 WP
+da35_bin_matched_final 51.7: EKF2 IMU0 is using GPS
+da35_bin_matched_final 51.7: EKF2 IMU1 is using GPS
+da35_bin_matched_final 68.4: Reached waypoint #2 dist 86m
+da35_bin_matched_final 68.4: Mission: 3 LoitTime
+da35_bin_matched_final 158.6: Loiter time complete
+da35_bin_matched_final 158.6: Mission: 4 ChangeSpeed
+da35_bin_matched_final 158.6: Set airspeed 25 m/s
+da35_bin_matched_final 158.6: Mission: 5 LoitTime
+da35_bin_matched_final 218.8: Loiter time complete
+da35_bin_matched_final 218.8: Mission: 6 ChangeSpeed
+da35_bin_matched_final 218.8: Set airspeed 23 m/s
+da35_bin_matched_final 218.8: Mission: 7 LoitTime
+da35_bin_matched_final 309.0: Loiter time complete
+da35_bin_matched_final 309.0: Mission: 8 LoitTime
+da35_bin_matched_final 399.2: Loiter time complete
+da35_bin_matched_final 399.2: Mission: 9 LoitTime
+da35_bin_matched_final 490.1: Loiter time complete
+da35_bin_matched_final 490.1: Mission: 10 LoitUnlim
+{
+  "model": "tig_da35_cruise",
+  "sim_end_s": 645.106,
+  "wall_duration_s": 160.12784707199899,
+  "valid": true,
+  "profile": true,
+  "max_alt_m": 131.415,
+  "last60_mean": {
+    "t": 615.0559999999999,
+    "mode": 10.0,
+    "armed": 1.0,
+    "roll": -18.750776639007587,
+    "pitch": 0.08294039297206901,
+    "yaw": -9.13782561109116,
+    "p": 0.009193622326323142,
+    "q": 0.04087743089844783,
+    "r": -0.12032426868875822,
+    "alt": 99.98920333333332,
+    "lat": 38.705405800499996,
+    "lon": -94.25764322883333,
+    "climb": 0.002683333333333334,
+    "mission_seq": 10.0,
+    "eas": 23.0053653049469,
+    "groundspeed": 23.936387004852296,
+    "throttle_pct": 26.811666666666667
+  },
+  "last60_std": {
+    "t": 17.334935823359714,
+    "mode": 0.0,
+    "armed": 0.0,
+    "roll": 0.06588489900425253,
+    "pitch": 0.1643653955418948,
+    "yaw": 97.04678517569667,
+    "p": 0.001611953337422962,
+    "q": 0.001220138266944487,
+    "r": 0.0008809551025417994,
+    "alt": 0.022546823596967334,
+    "lat": 0.001197608856237009,
+    "lon": 0.0014883315403416988,
+    "climb": 0.013500747109317264,
+    "mission_seq": 0.0,
+    "eas": 0.02795788241726559,
+    "groundspeed": 0.037587242617130416,
+    "throttle_pct": 0.40801308805264974
+  }
+}

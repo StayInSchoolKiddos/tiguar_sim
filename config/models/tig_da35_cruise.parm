@@ -1,0 +1,2 @@
+# User-approved model default: limit takeoff throttle; retain BIN-derived cruise settings.
+TKOFF_THR_MAX 75

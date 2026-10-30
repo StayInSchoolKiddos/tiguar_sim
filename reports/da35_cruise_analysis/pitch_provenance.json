@@ -1,0 +1,72 @@
+{
+  "baseline": {
+    "run": "runtime/da35_pitch_investigation/baseline",
+    "throttle_onset_s": 25.900000000000023,
+    "flight_detection_s": 29.600000000000023,
+    "altitude_reference_m": 0.04098047688603395,
+    "duration_s": 60.0,
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641",
+    "parameters_sha256": "01966fe547e4a11521584356ec78247563846a24c0b191cc6d68322cfabe6e32",
+    "bin_sha256": "b21900bc2746b5dca8e62cddf381d1d624b59d092a8b4b4f4a8ea75ea154a435"
+  },
+  "scaling_speed": {
+    "run": "runtime/da35_pitch_investigation/scaling_speed",
+    "throttle_onset_s": 25.900000000000023,
+    "flight_detection_s": 29.600000000000023,
+    "altitude_reference_m": 0.04098047688603395,
+    "duration_s": 60.0,
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641",
+    "parameters_sha256": "64298a7d83dd52d336c920db43eedf4ad3714598c711f7aac84773ddc025d62e",
+    "bin_sha256": "f1bd36532ec186cd0a9eeaffbf653fec99dc010ee4d4971ea6097b7c873281b1"
+  },
+  "rotation_speed": {
+    "run": "runtime/da35_pitch_investigation/rotation_speed",
+    "throttle_onset_s": 25.900000000000023,
+    "flight_detection_s": 29.600000000000023,
+    "altitude_reference_m": 0.04098047688603395,
+    "duration_s": 60.0,
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641",
+    "parameters_sha256": "3141238155af545f0da2ab4dc7137722c8277c94f85d5e1ac8c48d391ddf3525",
+    "bin_sha256": "a4c5bd5451d8f7bee85ed328b4880f045f0ed10e93976a99e721c395b3009653"
+  },
+  "both_settings": {
+    "run": "runtime/da35_pitch_investigation/both_settings",
+    "throttle_onset_s": 25.900000000000023,
+    "flight_detection_s": 29.600000000000023,
+    "altitude_reference_m": 0.04098046571016305,
+    "duration_s": 60.0,
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641",
+    "parameters_sha256": "ed9aeeb4394d9f11f775b8091866ebbf34a521709354a236d0db19ad79a09a54",
+    "bin_sha256": "fe7a66402d1458272e6de0eda76c7068a7cd6e1e97d1ceab3c6f9eef9922fe28"
+  },
+  "unscaled_moments": {
+    "run": "runtime/da35_pitch_investigation/unscaled_moments",
+    "throttle_onset_s": 25.900000000000023,
+    "flight_detection_s": 46.70000000000004,
+    "altitude_reference_m": 0.04098040983080855,
+    "duration_s": 60.0,
+    "model_sha256": "eaec7461109526539826d0b834c75325903bfdeac80ae9df97ccbf0cc95b0015",
+    "parameters_sha256": "01966fe547e4a11521584356ec78247563846a24c0b191cc6d68322cfabe6e32",
+    "bin_sha256": "f869d746e0b3866b1ae372e7ab00a6bdca4841f8d908235b7857ffbdc93e8cd4"
+  },
+  "both_unscaled": {
+    "run": "runtime/da35_pitch_investigation/both_unscaled",
+    "throttle_onset_s": 25.900000000000023,
+    "flight_detection_s": 29.600000000000023,
+    "altitude_reference_m": 0.04098040983080855,
+    "duration_s": 60.0,
+    "model_sha256": "eaec7461109526539826d0b834c75325903bfdeac80ae9df97ccbf0cc95b0015",
+    "parameters_sha256": "ed9aeeb4394d9f11f775b8091866ebbf34a521709354a236d0db19ad79a09a54",
+    "bin_sha256": "032f7f133c62577a47a5dae03f94710a794c4cfc28cc0ef0107d8619a73b5958"
+  },
+  "bin_matched": {
+    "run": "runtime/da35_bin_matched_final",
+    "throttle_onset_s": 25.900000000000023,
+    "flight_detection_s": 29.700000000000024,
+    "altitude_reference_m": 0.04098047688603395,
+    "duration_s": 60.0,
+    "model_sha256": "90434b28bcc5a6857c7432b53dfb389f006d41deadead8b1ef6f700a6a93f641",
+    "parameters_sha256": "166f66486d139b28ae226317c54fe9e49a81593fd9e3f4ea32f9cb89d4ade0b4",
+    "bin_sha256": "43727c7ebebf9c98153043ea2f6740450d63917db4dfb26a5a33f750ca3f59ee"
+  }
+}

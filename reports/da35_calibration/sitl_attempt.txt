@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/jn89b/coding_projects/tiguar_sim/scripts/run_sitl.py", line 116, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/jn89b/coding_projects/tiguar_sim/scripts/run_sitl.py", line 31, in main
+    with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as check:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 233, in __init__
+    _socket.socket.__init__(self, family, type, proto, fileno)
+PermissionError: [Errno 1] Operation not permitted

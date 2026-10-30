@@ -1,0 +1,83 @@
+{
+  "rms_error_pct": 3.9717855972636026e-06,
+  "max_error_pct": 4.848786971933805e-06,
+  "all_sweep_points_converged": true,
+  "fit_pass": true,
+  "sitl_completed": true,
+  "pipeline_checks_pass": true,
+  "run_dir": "runtime/cruise_fleet_validation",
+  "reference_density_altitude_ft": 2449.695302100491,
+  "decision": "Accepted: fleet cruise model is the default.",
+  "settled_phases": [
+    {
+      "mission_seq": 3,
+      "altitude_target_m": 100,
+      "altitude_mean_m": 100.01243500000001,
+      "airspeed_target_mps": 23,
+      "airspeed_mean_mps": 22.996672315597536,
+      "throttle_mean_pct": 18.67
+    },
+    {
+      "mission_seq": 5,
+      "altitude_target_m": 100,
+      "altitude_mean_m": 100.004885,
+      "airspeed_target_mps": 25,
+      "airspeed_mean_mps": 25.01047510147095,
+      "throttle_mean_pct": 19.48
+    },
+    {
+      "mission_seq": 7,
+      "altitude_target_m": 130,
+      "altitude_mean_m": 130.09365999999997,
+      "airspeed_target_mps": 23,
+      "airspeed_mean_mps": 23.004818868637084,
+      "throttle_mean_pct": 18.645
+    },
+    {
+      "mission_seq": 8,
+      "altitude_target_m": 100,
+      "altitude_mean_m": 100.14179,
+      "airspeed_target_mps": 23,
+      "airspeed_mean_mps": 22.99576313018799,
+      "throttle_mean_pct": 18.55
+    },
+    {
+      "mission_seq": 9,
+      "altitude_target_m": 100,
+      "altitude_mean_m": 99.931135,
+      "airspeed_target_mps": 23,
+      "airspeed_mean_mps": 23.00937252998352,
+      "throttle_mean_pct": 19.315
+    }
+  ],
+  "log_metrics": [
+    {
+      "date": "2026-04-30",
+      "model": "baseline",
+      "common_windows": 7,
+      "rpm_rmse": 303.38170061099225,
+      "climb_rmse_mps": 1.1689580268047617
+    },
+    {
+      "date": "2026-04-30",
+      "model": "cruise",
+      "common_windows": 7,
+      "rpm_rmse": 359.28963088394937,
+      "climb_rmse_mps": 1.5311253729883267
+    },
+    {
+      "date": "2026-05-01",
+      "model": "baseline",
+      "common_windows": 31,
+      "rpm_rmse": 219.01740081119442,
+      "climb_rmse_mps": 0.4645445749723177
+    },
+    {
+      "date": "2026-05-01",
+      "model": "cruise",
+      "common_windows": 31,
+      "rpm_rmse": 503.823978729513,
+      "climb_rmse_mps": 0.8384076474107622
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "mass_kg": 24.947580350000003,
+  "span_m": 3.888,
+  "area_m2": 1.0407316752,
+  "root_chord_m": 0.3299968,
+  "tip_chord_m": 0.205359,
+  "cd0": 0.007900875984936018,
+  "induced_k": 0.04,
+  "thrust_scale": 1.0642298493439664,
+  "power_coefficients_w": [
+    3.666327563268436e-14,
+    875.8407209928035,
+    1487.5973205873306
+  ],
+  "throttle_grid": [
+    0.0,
+    0.05,
+    0.1,
+    0.15000000000000002,
+    0.2,
+    0.25,
+    0.30000000000000004,
+    0.35000000000000003,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6000000000000001,
+    0.65,
+    0.7000000000000001,
+    0.75,
+    0.8,
+    0.8500000000000001,
+    0.9,
+    0.9500000000000001,
+    1.0
+  ],
+  "shaft_power_w": [
+    3.666327563268436e-14,
+    47.51102935110855,
+    102.46004530515371,
+    164.84704786213553,
+    234.67203702205398,
+    311.9350127849091,
+    396.6359751507009,
+    488.7749241194294,
+    588.3518596910944,
+    695.3667818656961,
+    809.8196906432345,
+    931.7105860237097,
+    1061.0394680071213,
+    1197.8063365934695,
+    1342.0111917827548,
+    1493.654033574976,
+    1652.7348619701347,
+    1819.2536769682297,
+    1993.2104785692609,
+    2174.6052667732292,
+    2363.4380415801343
+  ],
+  "scores": {
+    "training": {
+      "windows": 31,
+      "rpm_rmse": 218.62621968816336,
+      "climb_rmse_from_rpm": 0.38214338306285905,
+      "climb_rmse_from_throttle": 0.4641172987831024,
+      "airspeed_min": 22.681010036468507,
+      "airspeed_max": 24.242188034057616
+    },
+    "held_out": {
+      "windows": 7,
+      "rpm_rmse": 302.64296309104134,
+      "climb_rmse_from_rpm": 0.9756401871671855,
+      "climb_rmse_from_throttle": 1.1677765997966765,
+      "airspeed_min": 22.75483160018921,
+      "airspeed_max": 23.234172611236573
+    }
+  },
+  "training": "2026-05-01",
+  "held_out": "2026-04-30",
+  "assumptions": [
+    "User estimates takeoff mass at approximately 55 lb; fuel burn not measured.",
+    "Area assumes a simple trapezoid; inboard planform not measured.",
+    "Induced drag k fixed at 0.04; narrow speed range cannot identify a full drag polar.",
+    "Thrust scale is an effective fit conditional on mass/propeller/drag, not measured thrust.",
+    "Power outside observed throttle range is extrapolated.",
+    "Candidate loaded CG is provisionally x=0.94 m, z=0 aligned with the thrust datum; actual CG unknown.",
+    "Candidate loaded inertias 20.5/15.5/34 kg*m2: yaw is a physically admissible prior, not the inconsistent 41.4 measurement.",
+    "Different-day propulsion/configuration differences remain possible."
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "model": "tig_da35_cruise",
+    "run": "runtime/da35_bin_matched_final",
+    "parameter_values_verified": 184,
+    "all_parameters_match": true,
+    "pipeline_passed": true,
+    "parameters_sha256": "166f66486d139b28ae226317c54fe9e49a81593fd9e3f4ea32f9cb89d4ade0b4"
+  },
+  {
+    "model": "tig_calibrated",
+    "run": "runtime/bin_matched_tig_calibrated",
+    "parameter_values_verified": 184,
+    "all_parameters_match": true,
+    "pipeline_passed": true,
+    "parameters_sha256": "166f66486d139b28ae226317c54fe9e49a81593fd9e3f4ea32f9cb89d4ade0b4"
+  },
+  {
+    "model": "tig_da35",
+    "run": "runtime/bin_matched_tig_da35",
+    "parameter_values_verified": 184,
+    "all_parameters_match": true,
+    "pipeline_passed": true,
+    "parameters_sha256": "166f66486d139b28ae226317c54fe9e49a81593fd9e3f4ea32f9cb89d4ade0b4"
+  }
+]

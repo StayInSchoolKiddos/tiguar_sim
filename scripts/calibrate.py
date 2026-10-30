@@ -96,4 +96,14 @@ def main():
     (ROOT/'config/calibration.json').write_text(json.dumps(config,indent=2))
     print(json.dumps(config,indent=2))
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--cruise-csv', type=Path)
+    parser.add_argument('--output', type=Path, default=ROOT/'config/cruise_calibration.json')
+    args=parser.parse_args()
+    if args.cruise_csv:
+        from cruise_calibration import fit_cruise
+        fit_cruise(args.cruise_csv, args.output)
+    else:
+        main()

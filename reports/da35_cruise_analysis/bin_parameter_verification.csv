@@ -1,0 +1,185 @@
+name,source_value,source_time_s,simulator_value,action,reason,loaded_value,matches
+ACRO_LOCKING,0.0,772.6521329999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+ACRO_PITCH_RATE,180.0,772.65212,180.0,matched,Flight-control or navigation parameter,180.0,True
+ACRO_ROLL_RATE,180.0,772.652112,180.0,matched,Flight-control or navigation parameter,180.0,True
+ACRO_YAW_RATE,0.0,772.652127,0.0,matched,Flight-control or navigation parameter,0.0,True
+AIRSPEED_CRUISE,23.0,772.651839,23.0,matched,Flight-control or navigation parameter,23.0,True
+AIRSPEED_MAX,30.0,772.651853,30.0,matched,Flight-control or navigation parameter,30.0,True
+AIRSPEED_MIN,18.0,772.651846,18.0,matched,Flight-control or navigation parameter,18.0,True
+ALT_OFFSET,0.0,772.651746,0.0,matched,Flight-control or navigation parameter,0.0,True
+ARMING_CHECK,1.0,772.671752,0.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",0.0,True
+ARSPD_USE,1.0,773.331336,1.0,matched,Flight-control or navigation parameter,1.0,True
+CRUISE_ALT_FLOOR,0.0,772.6522669999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+FBWB_CLIMB_RATE,3.0,772.651878,3.0,matched,Flight-control or navigation parameter,3.0,True
+FBWB_ELEV_REV,0.0,772.651859,0.0,matched,Flight-control or navigation parameter,0.0,True
+FLAP_1_PERCNT,0.0,772.6522729999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+FLAP_1_SPEED,0.0,772.65228,0.0,matched,Flight-control or navigation parameter,0.0,True
+FLAP_2_PERCNT,0.0,772.652286,0.0,matched,Flight-control or navigation parameter,0.0,True
+FLAP_2_SPEED,0.0,772.652294,0.0,matched,Flight-control or navigation parameter,0.0,True
+FLAP_SLEWRATE,30.0,772.651935,30.0,matched,Flight-control or navigation parameter,30.0,True
+FLIGHT_OPTIONS,0.0,773.230879,0.0,matched,Flight-control or navigation parameter,0.0,True
+FLTMODE_CH,5.0,772.652038,0.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",0.0,True
+FS_GCS_ENABL,3.0,772.652032,0.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",0.0,True
+INS_ACCEL_FILTER,20.0,772.750758,20.0,matched,Flight-control or navigation parameter,20.0,True
+INS_GYRO_FILTER,20.0,772.7507479999999,20.0,matched,Flight-control or navigation parameter,20.0,True
+KFF_RDDRMIX,0.30000001192092896,772.651568,0.30000001192092896,matched,Flight-control or navigation parameter,0.30000001192092896,True
+KFF_THR2PTCH,0.0,772.651574,0.0,matched,Flight-control or navigation parameter,0.0,True
+LAND_ABORT_DEG,0.0,773.310721,0.0,matched,Flight-control or navigation parameter,0.0,True
+LAND_ABORT_THR,1.0,773.310806,1.0,matched,Flight-control or navigation parameter,1.0,True
+LAND_DISARMDELAY,20.0,773.310789,20.0,matched,Flight-control or navigation parameter,20.0,True
+LAND_FLAP_PERCNT,50.0,773.3108139999999,50.0,matched,Flight-control or navigation parameter,50.0,True
+LAND_FLARE_AIM,50.0,773.310832,50.0,matched,Flight-control or navigation parameter,50.0,True
+LAND_FLARE_ALT,3.0,773.310737,3.0,matched,Flight-control or navigation parameter,3.0,True
+LAND_FLARE_SEC,1.5,773.310744,1.5,matched,Flight-control or navigation parameter,1.5,True
+LAND_OPTIONS,0.0,773.3108229999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+LAND_PF_ALT,10.0,773.310752,10.0,matched,Flight-control or navigation parameter,10.0,True
+LAND_PF_ARSPD,19.0,773.3107719999999,19.0,matched,Flight-control or navigation parameter,19.0,True
+LAND_PF_SEC,5.0,773.310762,5.0,matched,Flight-control or navigation parameter,5.0,True
+LAND_PITCH_DEG,3.0,773.3107289999999,3.0,matched,Flight-control or navigation parameter,3.0,True
+LAND_SLOPE_RCALC,0.0,773.310713,0.0,matched,Flight-control or navigation parameter,0.0,True
+LAND_THEN_NEUTRL,0.0,773.310797,0.0,matched,Flight-control or navigation parameter,0.0,True
+LAND_THR_SLEW,80.0,773.310781,80.0,matched,Flight-control or navigation parameter,80.0,True
+LAND_TYPE,0.0,773.330418,0.0,matched,Flight-control or navigation parameter,0.0,True
+LAND_WIND_COMP,50.0,773.310841,50.0,matched,Flight-control or navigation parameter,50.0,True
+LEVEL_ROLL_LIMIT,5.0,772.6517329999999,5.0,matched,Flight-control or navigation parameter,5.0,True
+LOG_BITMASK,65535.0,772.6521789999999,65535.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",65535.0,True
+LOG_DISARMED,0.0,772.790621,1.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1.0,True
+NAVL1_DAMPING,0.75,772.790117,0.75,matched,Flight-control or navigation parameter,0.75,True
+NAVL1_LIM_BANK,0.0,772.790161,0.0,matched,Flight-control or navigation parameter,0.0,True
+NAVL1_PERIOD,17.0,772.7901099999999,17.0,matched,Flight-control or navigation parameter,17.0,True
+NAVL1_XTRACK_I,0.019999999552965164,772.790125,0.019999999552965164,matched,Flight-control or navigation parameter,0.019999999552965164,True
+PTCH2SRV_RLL,1.0,772.710233,1.0,matched,Flight-control or navigation parameter,1.0,True
+PTCH2SRV_RMAX_DN,60.0,772.7102249999999,60.0,matched,Flight-control or navigation parameter,60.0,True
+PTCH2SRV_RMAX_UP,60.0,772.710195,60.0,matched,Flight-control or navigation parameter,60.0,True
+PTCH2SRV_TCONST,0.8999999761581421,772.710187,0.8999999761581421,matched,Flight-control or navigation parameter,0.8999999761581421,True
+PTCH_LIM_MAX_DEG,20.0,772.6521,20.0,matched,Flight-control or navigation parameter,20.0,True
+PTCH_LIM_MIN_DEG,-25.0,772.652106,-25.0,matched,Flight-control or navigation parameter,-25.0,True
+PTCH_RATE_D,0.009999999776482582,772.710285,0.009999999776482582,matched,Flight-control or navigation parameter,0.009999999776482582,True
+PTCH_RATE_D_FF,0.0,772.710412,0.0,matched,Flight-control or navigation parameter,0.0,True
+PTCH_RATE_FF,0.4595664143562317,772.710296,0.4595664143562317,matched,Flight-control or navigation parameter,0.4595664143562317,True
+PTCH_RATE_FLTD,5.0,772.7103599999999,5.0,matched,Flight-control or navigation parameter,5.0,True
+PTCH_RATE_FLTE,0.0,772.710349,0.0,matched,Flight-control or navigation parameter,0.0,True
+PTCH_RATE_FLTT,1.768388032913208,772.7103139999999,1.768388032913208,matched,Flight-control or navigation parameter,1.768388032913208,True
+PTCH_RATE_I,0.4595664143562317,772.710255,0.4595664143562317,matched,Flight-control or navigation parameter,0.4595664143562317,True
+PTCH_RATE_IMAX,0.6660000085830688,772.710305,0.6660000085830688,matched,Flight-control or navigation parameter,0.6660000085830688,True
+PTCH_RATE_NEF,0.0,772.710432,0.0,matched,Flight-control or navigation parameter,0.0,True
+PTCH_RATE_NTF,0.0,772.710422,0.0,matched,Flight-control or navigation parameter,0.0,True
+PTCH_RATE_P,0.24527199566364288,772.710246,0.24527199566364288,matched,Flight-control or navigation parameter,0.24527199566364288,True
+PTCH_RATE_PDMX,0.0,772.7104019999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+PTCH_RATE_SMAX,150.0,772.710391,150.0,matched,Flight-control or navigation parameter,150.0,True
+PTCH_TRIM_DEG,4.0,772.6522269999999,4.0,matched,Flight-control or navigation parameter,4.0,True
+RLL2SRV_RMAX,75.0,772.6909499999999,75.0,matched,Flight-control or navigation parameter,75.0,True
+RLL2SRV_TCONST,0.5,772.690942,0.5,matched,Flight-control or navigation parameter,0.5,True
+RLL_RATE_D,0.000980369746685028,772.691019,0.000980369746685028,matched,Flight-control or navigation parameter,0.000980369746685028,True
+RLL_RATE_D_FF,0.0,772.710158,0.0,matched,Flight-control or navigation parameter,0.0,True
+RLL_RATE_FF,0.5233206152915955,772.710027,0.5233206152915955,matched,Flight-control or navigation parameter,0.5233206152915955,True
+RLL_RATE_FLTD,10.0,772.710068,10.0,matched,Flight-control or navigation parameter,10.0,True
+RLL_RATE_FLTE,0.0,772.710058,0.0,matched,Flight-control or navigation parameter,0.0,True
+RLL_RATE_FLTT,3.183098793029785,772.7100489999999,3.183098793029785,matched,Flight-control or navigation parameter,3.183098793029785,True
+RLL_RATE_I,0.0066612823866307735,772.69098,0.0066612823866307735,matched,Flight-control or navigation parameter,0.0066612823866307735,True
+RLL_RATE_IMAX,0.6660000085830688,772.7100389999999,0.6660000085830688,matched,Flight-control or navigation parameter,0.6660000085830688,True
+RLL_RATE_NEF,0.0,772.7101779999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+RLL_RATE_NTF,0.0,772.710168,0.0,matched,Flight-control or navigation parameter,0.0,True
+RLL_RATE_P,0.0066612823866307735,772.690959,0.0066612823866307735,matched,Flight-control or navigation parameter,0.0066612823866307735,True
+RLL_RATE_PDMX,0.0,772.710142,0.0,matched,Flight-control or navigation parameter,0.0,True
+RLL_RATE_SMAX,150.0,772.710104,150.0,matched,Flight-control or navigation parameter,150.0,True
+ROLL_LIMIT_DEG,45.0,772.6520929999999,45.0,matched,Flight-control or navigation parameter,45.0,True
+RUDDER_ONLY,0.0,772.652158,0.0,matched,Flight-control or navigation parameter,0.0,True
+RUDD_DT_GAIN,10.0,773.230434,10.0,matched,Flight-control or navigation parameter,10.0,True
+SCALING_SPEED,23.0,772.6521849999999,23.0,matched,Flight-control or navigation parameter,23.0,True
+SCHED_LOOP_RATE,50.0,772.731178,50.0,matched,Flight-control or navigation parameter,50.0,True
+SERVO1_FUNCTION,4.0,772.8705289999999,4.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",4.0,True
+SERVO1_MAX,1850.0,772.870457,2000.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",2000.0,True
+SERVO1_MIN,1300.0,772.870422,1000.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1000.0,True
+SERVO1_REVERSED,0.0,772.8704879999999,0.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",0.0,True
+SERVO1_TRIM,1615.0,772.870472,1500.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1500.0,True
+SERVO2_FUNCTION,2.0,772.8900209999999,19.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",19.0,True
+SERVO2_MAX,1762.0,772.8898939999999,2000.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",2000.0,True
+SERVO2_MIN,1455.0,772.870564,1000.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1000.0,True
+SERVO2_REVERSED,0.0,772.890004,1.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1.0,True
+SERVO2_TRIM,1540.0,772.889913,1500.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1500.0,True
+SERVO3_FUNCTION,80.0,772.890152,70.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",70.0,True
+SERVO3_MAX,1965.0,772.890078,2000.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",2000.0,True
+SERVO3_MIN,1245.0,772.890038,1000.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1000.0,True
+SERVO3_REVERSED,0.0,772.890134,0.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",0.0,True
+SERVO3_TRIM,1610.0,772.890096,1000.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1000.0,True
+SERVO4_FUNCTION,80.0,772.8902979999999,21.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",21.0,True
+SERVO4_MAX,2030.0,772.890238,2000.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",2000.0,True
+SERVO4_MIN,1130.0,772.8901979999999,1000.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1000.0,True
+SERVO4_REVERSED,1.0,772.890275,1.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1.0,True
+SERVO4_TRIM,1600.0,772.890257,1500.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",1500.0,True
+SERVO_AUTO_TRIM,0.0,772.9312239999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+SIM_WIND_SPD,,,0.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",0.0,True
+SIM_WIND_TURB,,,0.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",0.0,True
+STAB_PITCH_DOWN,2.0,772.651581,2.0,matched,Flight-control or navigation parameter,2.0,True
+STALL_PREVENTION,1.0,772.651809,1.0,matched,Flight-control or navigation parameter,1.0,True
+STICK_MIXING,1.0,772.651605,1.0,matched,Flight-control or navigation parameter,1.0,True
+TECS_APPR_SMAX,2.0,772.7903759999999,2.0,matched,Flight-control or navigation parameter,2.0,True
+TECS_CLMB_MAX,3.0,772.79017,3.0,matched,Flight-control or navigation parameter,3.0,True
+TECS_FLARE_HGT,3.0,772.790536,3.0,matched,Flight-control or navigation parameter,3.0,True
+TECS_HDEM_TCONST,3.0,772.790547,3.0,matched,Flight-control or navigation parameter,3.0,True
+TECS_HGT_OMEGA,3.0,772.7902359999999,3.0,matched,Flight-control or navigation parameter,3.0,True
+TECS_INTEG_GAIN,0.10000000149011612,772.790221,0.10000000149011612,matched,Flight-control or navigation parameter,0.10000000149011612,True
+TECS_LAND_ARSPD,21.0,772.7902859999999,21.0,matched,Flight-control or navigation parameter,21.0,True
+TECS_LAND_DAMP,0.5,772.790355,0.5,matched,Flight-control or navigation parameter,0.5,True
+TECS_LAND_IGAIN,0.20000000298023224,772.790405,0.20000000298023224,matched,Flight-control or navigation parameter,0.20000000298023224,True
+TECS_LAND_PDAMP,0.0,772.7904249999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+TECS_LAND_PMAX,8.0,772.790364,8.0,matched,Flight-control or navigation parameter,8.0,True
+TECS_LAND_SINK,0.10000000149011612,772.7903359999999,0.10000000149011612,matched,Flight-control or navigation parameter,0.10000000149011612,True
+TECS_LAND_SPDWGT,0.4000000059604645,772.790305,0.4000000059604645,matched,Flight-control or navigation parameter,0.4000000059604645,True
+TECS_LAND_SRC,0.0,772.790386,0.0,matched,Flight-control or navigation parameter,0.0,True
+TECS_LAND_TCONST,4.0,772.790345,4.0,matched,Flight-control or navigation parameter,4.0,True
+TECS_LAND_TDAMP,0.0,772.790396,0.0,matched,Flight-control or navigation parameter,0.0,True
+TECS_LAND_THR,-1.0,772.790295,-1.0,matched,Flight-control or navigation parameter,-1.0,True
+TECS_OPTIONS,0.0,772.790477,0.0,matched,Flight-control or navigation parameter,0.0,True
+TECS_PITCH_MAX,0.0,772.790318,0.0,matched,Flight-control or navigation parameter,0.0,True
+TECS_PITCH_MIN,0.0,772.7903269999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+TECS_PTCH_DAMP,0.4000000059604645,772.790269,0.4000000059604645,matched,Flight-control or navigation parameter,0.4000000059604645,True
+TECS_PTCH_FF_K,0.0,772.790526,0.0,matched,Flight-control or navigation parameter,0.0,True
+TECS_PTCH_FF_V0,12.0,772.7905149999999,12.0,matched,Flight-control or navigation parameter,12.0,True
+TECS_RLL2THR,10.0,772.790252,10.0,matched,Flight-control or navigation parameter,10.0,True
+TECS_SINK_MAX,4.0,772.790277,4.0,matched,Flight-control or navigation parameter,4.0,True
+TECS_SINK_MIN,2.0,772.790177,2.0,matched,Flight-control or navigation parameter,2.0,True
+TECS_SPDWEIGHT,1.0,772.790261,1.0,matched,Flight-control or navigation parameter,1.0,True
+TECS_SPD_OMEGA,2.0,772.7902439999999,2.0,matched,Flight-control or navigation parameter,2.0,True
+TECS_SYNAIRSPEED,0.0,772.790437,0.0,matched,Flight-control or navigation parameter,0.0,True
+TECS_THR_DAMP,0.8999999761581421,772.790212,0.8999999761581421,matched,Flight-control or navigation parameter,0.8999999761581421,True
+TECS_TIME_CONST,4.0,772.790204,4.0,matched,Flight-control or navigation parameter,4.0,True
+TECS_TKOFF_IGAIN,0.0,772.7904149999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+TECS_VERT_ACC,7.0,772.790228,7.0,matched,Flight-control or navigation parameter,7.0,True
+TERRAIN_ENABLE,1.0,772.690578,0.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",0.0,True
+THROTTLE_NUDGE,1.0,772.6519979999999,1.0,matched,Flight-control or navigation parameter,1.0,True
+THR_FAILSAFE,1.0,772.651977,0.0,simulation override,"Equivalent simulator axes, local harness, logging or environment",0.0,True
+THR_MAX,100.0,772.6519149999999,100.0,matched,Flight-control or navigation parameter,100.0,True
+THR_MIN,0.0,772.651885,0.0,matched,Flight-control or navigation parameter,0.0,True
+THR_PASS_STAB,0.0,772.651971,0.0,matched,Flight-control or navigation parameter,0.0,True
+THR_SLEWRATE,100.0,772.651928,100.0,matched,Flight-control or navigation parameter,100.0,True
+THR_SUPP_MAN,0.0,772.651964,0.0,matched,Flight-control or navigation parameter,0.0,True
+TKOFF_ACCEL_CNT,1.0,773.250274,1.0,matched,Flight-control or navigation parameter,1.0,True
+TKOFF_ALT,30.0,773.330437,30.0,matched,Flight-control or navigation parameter,30.0,True
+TKOFF_DIST,100.0,773.33046,100.0,matched,Flight-control or navigation parameter,100.0,True
+TKOFF_FLAP_PCNT,50.0,772.651724,50.0,matched,Flight-control or navigation parameter,50.0,True
+TKOFF_GND_PITCH,5.0,773.330468,5.0,matched,Flight-control or navigation parameter,5.0,True
+TKOFF_LVL_ALT,5.0,773.3304449999999,5.0,matched,Flight-control or navigation parameter,5.0,True
+TKOFF_LVL_PITCH,15.0,773.3304529999999,15.0,matched,Flight-control or navigation parameter,15.0,True
+TKOFF_PLIM_SEC,2.0,772.651718,2.0,matched,Flight-control or navigation parameter,2.0,True
+TKOFF_ROTATE_SPD,17.0,772.651705,17.0,matched,Flight-control or navigation parameter,17.0,True
+TKOFF_TDRAG_ELEV,-5.0,772.65165,-5.0,matched,Flight-control or navigation parameter,-5.0,True
+TKOFF_TDRAG_SPD1,15.0,772.6516819999999,15.0,matched,Flight-control or navigation parameter,15.0,True
+TKOFF_THR_DELAY,2.0,772.651624,2.0,matched,Flight-control or navigation parameter,2.0,True
+TKOFF_THR_MAX,0.0,772.651922,0.0,matched,Flight-control or navigation parameter,0.0,True
+TKOFF_THR_MAX_T,4.0,772.651631,4.0,matched,Flight-control or navigation parameter,4.0,True
+TKOFF_THR_MINACC,0.0,772.651618,0.0,matched,Flight-control or navigation parameter,0.0,True
+TKOFF_THR_MINSPD,0.0,772.651612,0.0,matched,Flight-control or navigation parameter,0.0,True
+TKOFF_THR_SLEW,80.0,772.651712,80.0,matched,Flight-control or navigation parameter,80.0,True
+TKOFF_TIMEOUT,0.0,773.2507029999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+TRIM_THROTTLE,16.0,772.65199,16.0,matched,Flight-control or navigation parameter,16.0,True
+WP_LOITER_RAD,200.0,772.651796,200.0,matched,Flight-control or navigation parameter,200.0,True
+WP_MAX_RADIUS,0.0,772.651759,0.0,matched,Flight-control or navigation parameter,0.0,True
+WP_RADIUS,80.0,772.651753,80.0,matched,Flight-control or navigation parameter,80.0,True
+YAW2SRV_DAMP,0.20000000298023224,772.710458,0.20000000298023224,matched,Flight-control or navigation parameter,0.20000000298023224,True
+YAW2SRV_IMAX,1500.0,772.710474,1500.0,matched,Flight-control or navigation parameter,1500.0,True
+YAW2SRV_INT,0.0,772.7104499999999,0.0,matched,Flight-control or navigation parameter,0.0,True
+YAW2SRV_RLL,1.0,772.710466,1.0,matched,Flight-control or navigation parameter,1.0,True
+YAW2SRV_SLIP,0.0,772.710441,0.0,matched,Flight-control or navigation parameter,0.0,True
+YAW_RATE_ENABLE,0.0,772.710482,0.0,matched,Flight-control or navigation parameter,0.0,True

@@ -1,0 +1,613 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tiguar cruise and takeoff: actual vs simulated</title>
+<style>body{font:17px/1.6 system-ui,sans-serif;max-width:1100px;margin:36px auto;padding:0 20px;color:#202b38;background:#fafbfc}h1,h2{line-height:1.2}h1{font-size:34px}h2{margin-top:36px;font-size:25px}img{width:100%;height:auto;background:white}figure{margin:20px 0 32px}figcaption{font-size:15px;color:#4c5969}table{border-collapse:collapse;width:100%;background:white}td,th{padding:10px;border-bottom:1px solid #dce2e8;text-align:left!important}.table-wrap{overflow-x:auto}.lead{font-size:20px}.note{padding:16px 20px;background:#fff4df;border-left:4px solid #c47b12}.key{padding:14px 20px;background:#edf2f7}.actual{color:#222b36}.sim{color:#b35305}details{margin:20px 0;padding:16px;background:white;border:1px solid #dce2e8;border-radius:6px}summary{font-weight:600;cursor:pointer}pre{white-space:pre-wrap;font-size:14px}code{font-size:.9em}</style></head><body>
+<h1>Cruise and takeoff: actual vs simulation</h1>
+<p><a href="#takeoff">Jump to takeoff: airspeed, RPM, height and controls</a></p>
+<p><a href="pitch_investigation.html">Pitch investigation: original vs BIN-matched settings, coefficient tests and parameter audit</a></p>
+<p><a href="climb_options.html">Climb-rate options: tested pitch, climb-rate and throttle settings</a></p>
+<p><a href="#current-default">Current default: 75% takeoff throttle and steady-cruise verification</a></p>
+<p class="lead">The tuned DA35 now tracks the measured cruise RPM closely in these selected samples.</p>
+<p class="key"><strong class="actual">○ Black circles = actual flight measurements.</strong><br><strong class="sim">◆ Orange diamonds = simulated RPM from the tuned DA35.</strong><br>The smaller the gap between the two markers, the closer the match.</p>
+<div class="table-wrap"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Data</th>
+      <th>Samples</th>
+      <th>Mean absolute RPM error</th>
+      <th>RMS RPM error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>May 1 · fitted samples</td>
+      <td>15</td>
+      <td>1.9%</td>
+      <td>119 RPM</td>
+    </tr>
+    <tr>
+      <td>April 30 · held-out samples</td>
+      <td>2</td>
+      <td>0.1%</td>
+      <td>6 RPM</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>Each point represents a separate <strong>10-second cruise average</strong>. The simulation is evaluated at that sample's recorded throttle, true airspeed and air density. These are steady engine calculations—not a replay of the flight path. Sample numbers do not represent a continuous time axis.</p>
+<h2>1. Actual vs simulated: fitting samples</h2>
+<p>These May 1 samples were used to adjust the throttle response, so a good fit here is expected.</p>
+<figure><img src="actual_vs_simulated_may01.png" alt="May 1 actual measured RPM as black circles and simulated tuned DA35 RPM as orange diamonds for 15 cruise samples, with signed RPM errors below."><figcaption>Top: compare the black circle with the orange diamond in each column. Bottom: zero means a perfect match; positive bars mean the simulation runs faster than the measurement.</figcaption></figure>
+<details><summary>View the actual and simulated numbers for May 1</summary><div class="table-wrap"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Sample</th>
+      <th>Flight</th>
+      <th>Log time (s)</th>
+      <th>Actual RPM</th>
+      <th>Simulated RPM</th>
+      <th>Difference (RPM)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1178.6</td>
+      <td>5052</td>
+      <td>4949</td>
+      <td>-103</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>1258.6</td>
+      <td>4714</td>
+      <td>4704</td>
+      <td>-10</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1</td>
+      <td>1268.6</td>
+      <td>5291</td>
+      <td>5207</td>
+      <td>-85</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>1</td>
+      <td>1308.6</td>
+      <td>5127</td>
+      <td>5126</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1</td>
+      <td>1318.6</td>
+      <td>5197</td>
+      <td>5015</td>
+      <td>-182</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>1</td>
+      <td>1368.6</td>
+      <td>5067</td>
+      <td>5007</td>
+      <td>-60</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>1</td>
+      <td>1378.6</td>
+      <td>5307</td>
+      <td>5236</td>
+      <td>-71</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>1</td>
+      <td>1428.6</td>
+      <td>4483</td>
+      <td>4798</td>
+      <td>316</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>1</td>
+      <td>1438.6</td>
+      <td>5213</td>
+      <td>5136</td>
+      <td>-77</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>1</td>
+      <td>1488.6</td>
+      <td>4706</td>
+      <td>4782</td>
+      <td>77</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>1</td>
+      <td>1518.6</td>
+      <td>4590</td>
+      <td>4641</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>1</td>
+      <td>1528.6</td>
+      <td>4873</td>
+      <td>4807</td>
+      <td>-66</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>1</td>
+      <td>1538.6</td>
+      <td>4559</td>
+      <td>4718</td>
+      <td>159</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>3</td>
+      <td>2951.2</td>
+      <td>4434</td>
+      <td>4529</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>9</td>
+      <td>6639.8</td>
+      <td>5559</td>
+      <td>5564</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table></div></details>
+<h2>2. Actual vs simulated: held-out samples</h2>
+<p>These April 30 samples were <strong>not used to fit the new correction</strong>. They check how it behaves on another flight day.</p>
+<figure><img src="actual_vs_simulated_apr30.png" alt="April 30 measured and simulated RPM for two held-out cruise samples, with signed errors below."><figcaption>The markers nearly overlap. This is promising, but two samples are not enough to establish broad accuracy. The vertical scales differ from the May 1 chart; use the labeled RPM values.</figcaption></figure>
+<details><summary>View the actual and simulated numbers for April 30</summary><div class="table-wrap"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Sample</th>
+      <th>Flight</th>
+      <th>Log time (s)</th>
+      <th>Actual RPM</th>
+      <th>Simulated RPM</th>
+      <th>Difference (RPM)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>919.9</td>
+      <td>5978</td>
+      <td>5982</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>929.9</td>
+      <td>5733</td>
+      <td>5725</td>
+      <td>-8</td>
+    </tr>
+  </tbody>
+</table></div></details>
+<p class="note"><strong>What this establishes:</strong> cruise RPM agreement improved. It does not establish accurate thrust, fuel use or takeoff performance. The held-out climb prediction still has roughly 1.5 m/s RMS error. All Tiguar profiles use the shared BIN-derived base; the cruise-tuned model now adds its approved 75% takeoff throttle limit.</p>
+<section id="takeoff"><h2>3. Takeoff: actual flight vs simulated flight</h2>
+<p>These plots use the <strong>saved coupled ArduPilot/JSBSim run of the cruise-tuned DA35</strong>: <code>runtime/da35_default75_validation</code>. Each day shows its first recorded takeoff against the same simulated takeoff. The parameter-file hash is included in the provenance.</p>
+<p class="key"><strong>Black solid line = actual flight.</strong><br><strong class="sim">Orange dashed line = simulated flight, without electric boost.</strong></p>
+<p>Time zero is independently detected when throttle reaches 20% and stays above it for one second during takeoff. We show five seconds before and 60 seconds after this event. This is throttle onset—not liftoff. Airspeed is EAS for both traces; simulated RPM comes from JSBSim truth on the shared simulation clock.</p>
+<p class="note"><strong>Different takeoff conditions:</strong> you recall approximately 20% electric assistance during takeoff/initial climb. The simulation has no boost. Actual logs show an initial flap command of 50; the simulated aircraft has no calibrated flap model. Wind, commands, targets and aircraft configuration can also differ. These overlays reveal differences; they do not isolate engine error or prove takeoff fidelity.</p>
+<p><strong>What to look for:</strong> compare the initial RPM rise and acceleration, then the rate of height gain. The pitch and throttle panels help explain when different controller commands contribute to separation. Once the simulation reaches its altitude target, it reduces throttle; later RPM differences also reflect that different flight path.</p>
+<h3>May 1: first recorded takeoff</h3>
+<figure><img src="takeoff_2026-05-01_actual_vs_simulated.png" alt="May 1 actual versus simulated takeoff airspeed, RPM and height over time."><figcaption>Black solid = actual flight. Orange dashed = the same coupled simulated takeoff used for both date comparisons. Gray shading shows five seconds before throttle onset. Height is zeroed to each flight's pre-takeoff reference.</figcaption></figure>
+<details open><summary>May 1: climb rate, pitch and throttle</summary><img src="takeoff_2026-05-01_controls.png" alt="May 1 actual versus simulated climb rate, pitch and gasoline throttle commands."><p>The throttle traces show why these are not identical-input tests. Recorded throttle represents the gasoline output channel; it does not measure electric assistance. The simulation controller can command a different throttle or pitch while flying its own mission.</p></details><h3>April 30: first recorded takeoff</h3>
+<figure><img src="takeoff_2026-04-30_actual_vs_simulated.png" alt="April 30 actual versus simulated takeoff airspeed, RPM and height over time."><figcaption>Black solid = actual flight. Orange dashed = the same coupled simulated takeoff used for both date comparisons. Gray shading shows five seconds before throttle onset. Height is zeroed to each flight's pre-takeoff reference.</figcaption></figure>
+<details open><summary>April 30: climb rate, pitch and throttle</summary><img src="takeoff_2026-04-30_controls.png" alt="April 30 actual versus simulated climb rate, pitch and gasoline throttle commands."><p>The throttle traces show why these are not identical-input tests. Recorded throttle represents the gasoline output channel; it does not measure electric assistance. The simulation controller can command a different throttle or pitch while flying its own mission.</p></details>
+<details><summary>Takeoff timing, peak RPM and source data</summary><p>Descriptive values over the displayed interval. A blank timing means the threshold was not reached within 60 seconds. Values include recorded transients; no curve shifts or smoothing were fitted to improve agreement.</p><div class="table-wrap"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Flight day</th>
+      <th>Source</th>
+      <th>Peak RPM (0–60 s)</th>
+      <th>Seconds to 20 m/s EAS</th>
+      <th>Seconds to +50 m</th>
+      <th>Initial flap command (logged units)</th>
+      <th>Missing RPM samples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2026-05-01</td>
+      <td>Actual</td>
+      <td>8247.0</td>
+      <td>21.1</td>
+      <td>37.5</td>
+      <td>50.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2026-05-01</td>
+      <td>Simulated</td>
+      <td>7958.5</td>
+      <td>42.5</td>
+      <td>25.5</td>
+      <td>10.8</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2026-04-30</td>
+      <td>Actual</td>
+      <td>8321.0</td>
+      <td>15.0</td>
+      <td>38.3</td>
+      <td>50.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2026-04-30</td>
+      <td>Simulated</td>
+      <td>7958.5</td>
+      <td>42.5</td>
+      <td>25.5</td>
+      <td>10.8</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></div>
+<p><a href="takeoff_simulated.csv">Simulated data</a> · <a href="takeoff_actual_2026-05-01.csv">May 1 actual data</a> · <a href="takeoff_actual_2026-04-30.csv">April 30 actual data</a> · <a href="takeoff_alignment.json">Alignment and provenance</a></p>
+<p>Simulation: <code>runtime/da35_default75_validation</code>. Flight-controller states are extracted from the simulated BIN log using the same fields as the actual logs. RPM is joined from JSBSim truth within 30 ms, with no clock offset fitted.</p></details></section>
+<section id="current-default"><h2>Current default: 75% takeoff throttle, with cruise checks</h2>
+<p><code>tig_da35_cruise</code> now applies <code>TKOFF_THR_MAX=75</code> by default through <code>config/models/tig_da35_cruise.parm</code>. The shared BIN snapshot and the other model defaults retain their original takeoff setting. Explicit experimental parameter files override model defaults.</p>
+<p><strong>Takeoff is closer, but it does not reproduce the black actual-flight curve.</strong> The height, speed, RPM and command histories still differ. The actual aircraft used up to 100% gasoline throttle plus recalled electric assistance; the simulator uses a 75% cap as an empirical scenario adjustment.</p>
+<div class="table-wrap"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Flight</th>
+      <th>Peak climb, first 30 s (m/s)</th>
+      <th>Mean takeoff climb at 10–80 m (m/s)</th>
+      <th>Seconds to +50 m</th>
+      <th>Peak RPM, first 60 s</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Actual May 1</td>
+      <td>4.49</td>
+      <td>2.09</td>
+      <td>37.50</td>
+      <td>8247.00</td>
+    </tr>
+    <tr>
+      <td>New default: 75%</td>
+      <td>4.52</td>
+      <td>3.05</td>
+      <td>25.50</td>
+      <td>7958.54</td>
+    </tr>
+    <tr>
+      <td>Previous default</td>
+      <td>8.05</td>
+      <td>6.58</td>
+      <td>14.90</td>
+      <td>8233.76</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>Climb means use takeoff-stage samples between 10 and 80 m height, with different time windows for each flight. Time to +50 m is measured from throttle onset. No curves were shifted or scaled to improve agreement.</p>
+<h3>Does steady cruise still track?</h3><p>Yes within the checked mission. Across five settled level-turn phases at 23/25 m/s and 100/130 m, the largest EAS RMSE is 0.036 m/s and largest height RMSE is 0.091 m. Values use the final 20 seconds of each phase.</p>
+<p>The separate straight-level run checks the final 60 seconds of a 6 km waypoint leg: mean EAS <strong>23.000 m/s</strong>, mean relative height <strong>100.025 m</strong>, climb RMS <strong>0.012 m/s</strong>, bank RMS 0.601°, RPM 4855 ± 13, throttle 25.7%. This tests simulated tracking, not a replay of the actual flight.</p>
+<figure><img src="default75_straight.png" alt="Steady straight cruise: simulated speed, height, climb, bank, RPM and throttle."></figure>
+<h3>Does the engine still match recorded level-flight RPM?</h3><p>The engine and its cruise calibration are unchanged. Below are the existing steady-model predictions restricted to the actual straight-and-level windows (turns excluded), evaluated at each window's recorded throttle, TAS and density. May 1 was used for fitting; April 30 is held out. These are cached engine calculations, separate from the coupled mission above.</p>
+<div class="table-wrap"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Day</th>
+      <th>Samples</th>
+      <th>Partition</th>
+      <th>RPM RMSE</th>
+      <th>Mean absolute RPM error (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2026-04-30</td>
+      <td>2</td>
+      <td>Held out</td>
+      <td>6.37</td>
+      <td>0.10</td>
+    </tr>
+    <tr>
+      <td>2026-05-01</td>
+      <td>6</td>
+      <td>Fit</td>
+      <td>93.08</td>
+      <td>1.71</td>
+    </tr>
+  </tbody>
+</table></div><figure><img src="default75_level_rpm.png" alt="Actual black RPM markers versus orange steady-model predictions for level-flight windows."></figure>
+<p>Only two held-out level windows are available. Good RPM agreement does not verify thrust or fuel consumption; the earlier held-out climb prediction error remains about 1.5 m/s RMS.</p>
+<details><summary>Before and after: settled cruise tracking by phase</summary><div class="table-wrap"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Configuration</th>
+      <th>Phase</th>
+      <th>Target EAS (m/s)</th>
+      <th>Mean EAS (m/s)</th>
+      <th>EAS RMSE (m/s)</th>
+      <th>Target height (m)</th>
+      <th>Mean height (m)</th>
+      <th>Height RMSE (m)</th>
+      <th>Mean throttle (%)</th>
+      <th>Mean climb (m/s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Previous default</td>
+      <td>3</td>
+      <td>23</td>
+      <td>22.993</td>
+      <td>0.029</td>
+      <td>100</td>
+      <td>100.027</td>
+      <td>0.035</td>
+      <td>25.635</td>
+      <td>-0.011</td>
+    </tr>
+    <tr>
+      <td>Previous default</td>
+      <td>5</td>
+      <td>25</td>
+      <td>24.992</td>
+      <td>0.025</td>
+      <td>100</td>
+      <td>100.053</td>
+      <td>0.057</td>
+      <td>27.095</td>
+      <td>-0.013</td>
+    </tr>
+    <tr>
+      <td>Previous default</td>
+      <td>7</td>
+      <td>23</td>
+      <td>23.001</td>
+      <td>0.024</td>
+      <td>130</td>
+      <td>130.084</td>
+      <td>0.091</td>
+      <td>25.615</td>
+      <td>-0.001</td>
+    </tr>
+    <tr>
+      <td>Previous default</td>
+      <td>8</td>
+      <td>23</td>
+      <td>23.028</td>
+      <td>0.037</td>
+      <td>100</td>
+      <td>100.060</td>
+      <td>0.064</td>
+      <td>25.425</td>
+      <td>-0.004</td>
+    </tr>
+    <tr>
+      <td>Previous default</td>
+      <td>9</td>
+      <td>23</td>
+      <td>22.996</td>
+      <td>0.021</td>
+      <td>100</td>
+      <td>99.920</td>
+      <td>0.085</td>
+      <td>26.490</td>
+      <td>-0.003</td>
+    </tr>
+    <tr>
+      <td>New default: 75%</td>
+      <td>3</td>
+      <td>23</td>
+      <td>22.995</td>
+      <td>0.027</td>
+      <td>100</td>
+      <td>100.036</td>
+      <td>0.041</td>
+      <td>25.675</td>
+      <td>-0.008</td>
+    </tr>
+    <tr>
+      <td>New default: 75%</td>
+      <td>5</td>
+      <td>25</td>
+      <td>24.989</td>
+      <td>0.025</td>
+      <td>100</td>
+      <td>100.052</td>
+      <td>0.056</td>
+      <td>27.100</td>
+      <td>-0.013</td>
+    </tr>
+    <tr>
+      <td>New default: 75%</td>
+      <td>7</td>
+      <td>23</td>
+      <td>23.002</td>
+      <td>0.025</td>
+      <td>130</td>
+      <td>130.081</td>
+      <td>0.091</td>
+      <td>25.645</td>
+      <td>0.000</td>
+    </tr>
+    <tr>
+      <td>New default: 75%</td>
+      <td>8</td>
+      <td>23</td>
+      <td>23.024</td>
+      <td>0.036</td>
+      <td>100</td>
+      <td>100.076</td>
+      <td>0.081</td>
+      <td>25.445</td>
+      <td>-0.005</td>
+    </tr>
+    <tr>
+      <td>New default: 75%</td>
+      <td>9</td>
+      <td>23</td>
+      <td>22.999</td>
+      <td>0.021</td>
+      <td>100</td>
+      <td>99.919</td>
+      <td>0.084</td>
+      <td>26.520</td>
+      <td>0.000</td>
+    </tr>
+  </tbody>
+</table></div></details>
+<p><a href="default75_straight_checks.json">Straight-flight checks</a> · <a href="default75_cruise_phases.csv">Cruise tracking metrics</a> · <a href="default75_level_rpm.csv">Actual level-flight RPM comparisons</a> · <a href="default75_provenance.json">Run provenance</a></p>
+<p>Interactive launch: <code>./run_tiguar.sh --model tig_da35_cruise</code>. Automated flight: <code>python3 scripts/run_sitl.py --model tig_da35_cruise --name my_default75_run --profile --duration 620</code>. The takeoff limit is applied automatically; no <code>--param-file</code> is required.</p></section>
+<h2>What changed in the model?</h2>
+<p>A single fitted factor (0.7666) reduces the input to the existing DA35 throttle linkage in the cruise region. Idle and high-throttle settings are preserved. This is an empirical adjustment, not a new horsepower specification. The experimental aircraft is <code>tig_da35_cruise</code>.</p>
+<p>You recalled approximately <strong>20% electric assistance during takeoff or initial climb</strong>. That is recorded separately from the manual's nominal 50% capability. Actual shaft assistance is not verified, and no boost has been added to this gasoline-only cruise model.</p>
+<details><summary>Before vs after tuning, climb estimates, and throttle mapping</summary>
+<p>These are supporting diagnostics. Blue = original DA35 simulation; orange = tuned DA35 simulation. Circles identify May 1 and squares April 30. The black diagonal in the RPM panel means simulated equals actual; zero in the error panel means no RPM difference.</p>
+<img src="cruise_comparison.png" alt="Technical before and after diagnostics for RPM, error, energy-balance climb, and throttle correction.">
+<div class="table-wrap"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>date</th>
+      <th>partition</th>
+      <th>model</th>
+      <th>windows</th>
+      <th>rpm_rmse</th>
+      <th>rpm_bias</th>
+      <th>rpm_mape_pct</th>
+      <th>rpm_max_error_pct</th>
+      <th>climb_rmse_mps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2026-04-30</td>
+      <td>held_out</td>
+      <td>tig_da35</td>
+      <td>2</td>
+      <td>403.51</td>
+      <td>403.26</td>
+      <td>6.88</td>
+      <td>6.98</td>
+      <td>2.24</td>
+    </tr>
+    <tr>
+      <td>2026-04-30</td>
+      <td>held_out</td>
+      <td>tig_da35_cruise</td>
+      <td>2</td>
+      <td>6.37</td>
+      <td>-2.33</td>
+      <td>0.10</td>
+      <td>0.14</td>
+      <td>1.50</td>
+    </tr>
+    <tr>
+      <td>2026-05-01</td>
+      <td>fit</td>
+      <td>tig_da35</td>
+      <td>15</td>
+      <td>486.87</td>
+      <td>472.67</td>
+      <td>9.73</td>
+      <td>17.56</td>
+      <td>0.80</td>
+    </tr>
+    <tr>
+      <td>2026-05-01</td>
+      <td>fit</td>
+      <td>tig_da35_cruise</td>
+      <td>15</td>
+      <td>118.99</td>
+      <td>3.13</td>
+      <td>1.88</td>
+      <td>7.04</td>
+      <td>0.28</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>Training RPM RMSE changes from 487 to 119; held-out RPM RMSE changes from 404 to 6. The correction improves both day-level scores, but two held-out windows cannot establish broad accuracy. Climb estimates use the existing drag model with recorded acceleration and bank; they are not full-flight simulations.</p></details>
+<details><summary>Sample selection and measurement variation</summary>
+<p>Existing quality-filtered, nonoverlapping windows are restricted to level flight or steady turns, 21–25 m/s EAS, valid propeller advance ratio, at least 60 seconds after flight detection, and continuously normal flight stage. Climb and descent windows are excluded. No boost telemetry is available to independently verify boost-off.</p>
+<p>15 fitting windows across 3 flights; 2 held-out windows across 1 flight(s). Fitting throttle range: 20.1–33.0%. Held-out throttle: 38.2–45.0%, outside the fitting range. Actual EAS range: 22.68–24.15 m/s.</p>
+<img src="cruise_windows.png" alt="Within-window RPM variation and recorded throttle for each selected sample.">
+<p>Error bars show within-window variation, not confidence intervals. Earlier model priors and the fleet spreadsheet are not fully independent of these logs. The correction trades some fleet-average agreement for closer agreement with these particular flights.</p></details>
+<details><summary>Coupled flight-test results and reproducibility</summary>
+<p>The coupled run checks that the aircraft can track commanded speed and altitude. It is a separate mission, not a match to the real flight path.</p>
+<img src="sitl_profile.png" alt="Simulated altitude, airspeed and throttle during the coupled test mission.">
+<pre>{
+  &quot;cold_start_idle_pass&quot;: true,
+  &quot;idle_rpm&quot;: 1650.000000251271,
+  &quot;ignition_shutdown_pass&quot;: true,
+  &quot;coupled&quot;: {
+    &quot;status&quot;: &quot;passed&quot;,
+    &quot;run&quot;: &quot;runtime/da35_default75_validation&quot;,
+    &quot;settled_phases&quot;: [
+      {
+        &quot;mission_seq&quot;: 3,
+        &quot;altitude_target_m&quot;: 100,
+        &quot;altitude_mean_m&quot;: 100.036345,
+        &quot;airspeed_target_mps&quot;: 23,
+        &quot;airspeed_mean_mps&quot;: 22.99456706047058,
+        &quot;throttle_mean_pct&quot;: 25.675
+      },
+      {
+        &quot;mission_seq&quot;: 5,
+        &quot;altitude_target_m&quot;: 100,
+        &quot;altitude_mean_m&quot;: 100.05156,
+        &quot;airspeed_target_mps&quot;: 25,
+        &quot;airspeed_mean_mps&quot;: 24.98945637702942,
+        &quot;throttle_mean_pct&quot;: 27.1
+      },
+      {
+        &quot;mission_seq&quot;: 7,
+        &quot;altitude_target_m&quot;: 130,
+        &quot;altitude_mean_m&quot;: 130.08105,
+        &quot;airspeed_target_mps&quot;: 23,
+        &quot;airspeed_mean_mps&quot;: 23.001627292633056,
+        &quot;throttle_mean_pct&quot;: 25.645
+      },
+      {
+        &quot;mission_seq&quot;: 8,
+        &quot;altitude_target_m&quot;: 100,
+        &quot;altitude_mean_m&quot;: 100.07648499999999,
+        &quot;airspeed_target_mps&quot;: 23,
+        &quot;airspeed_mean_mps&quot;: 23.024178342819212,
+        &quot;throttle_mean_pct&quot;: 25.445
+      },
+      {
+        &quot;mission_seq&quot;: 9,
+        &quot;altitude_target_m&quot;: 100,
+        &quot;altitude_mean_m&quot;: 99.91918000000001,
+        &quot;airspeed_target_mps&quot;: 23,
+        &quot;airspeed_mean_mps&quot;: 22.99939895629883,
+        &quot;throttle_mean_pct&quot;: 26.52
+      }
+    ],
+    &quot;parameters_sha256&quot;: &quot;98f4ff0b238fc6b7a381e9bab609edac529f3be1d1f6053fe3b41952c41b745c&quot;
+  },
+  &quot;default_changed&quot;: false
+}</pre>
+<p>Redraw this report from saved results without refitting or rerunning the simulator:</p><pre>MPLCONFIGDIR=/tmp/tiguar-mpl python3 scripts/tune_da35_cruise.py --report-only</pre>
+<p>Reproduce the calibration and flight check:</p><pre>MPLCONFIGDIR=/tmp/tiguar-mpl python3 scripts/tune_da35_cruise.py
+python3 scripts/run_sitl.py --model tig_da35_cruise --name da35_cruise_validation --profile --duration 620
+MPLCONFIGDIR=/tmp/tiguar-mpl python3 scripts/tune_da35_cruise.py --run-dir runtime/da35_cruise_validation</pre></details>
+<p><a href="predictions.csv">Actual and simulated data</a> · <a href="metrics.csv">Error metrics</a> · <a href="selection_audit.csv">Selection audit</a> · <a href="cruise_windows.csv">Selected windows</a></p></body></html>

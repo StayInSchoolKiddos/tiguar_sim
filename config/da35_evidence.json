@@ -1,0 +1,28 @@
+{
+  "user_recollection": "Approximately 20% electric assistance during takeoff or initial climb only, reported 2026-10-29. Exact shaft power, time intervals and exclusion of boosted samples from the cruise CSV are unverified.",
+  "manual": {
+    "file": "S-410 Tiguar User Manual v3.0 1 (2).pdf",
+    "propulsion_section": "4.1",
+    "nominal_takeoff_power_boost_fraction": 0.5,
+    "electric_motor_label": "Brushless, 2200W 230KV",
+    "propeller_label": "20x10 CCW",
+    "note": "Nominal system descriptions, not measured boost power in these flight logs."
+  },
+  "manufacturer": {
+    "url": "https://www.desertaircraft.com/products/da-35",
+    "checked_date": "2026-10-29",
+    "displacement_cc": 35,
+    "rpm_range": [
+      1500,
+      8200
+    ],
+    "rated_horsepower": null,
+    "note": "Product page does not state rated horsepower. Range differs from supplied Tiguar manual; exact installed variant unknown."
+  },
+  "reported_boost": {
+    "approximate_assistance_percent": 20,
+    "phase": "takeoff or initial climb",
+    "description": "User described 20% assistance, not a motor control setting. Physical power basis remains unverified.",
+    "applied_to_model": false
+  }
+}

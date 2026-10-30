@@ -1,0 +1,34 @@
+{
+  "simulation": {
+    "run": "runtime/da35_default75_validation",
+    "log_sha256": "4e3321f82ed70e6ce6e730db639fac0b2e4d1fe9870e24391a15c51e47bd267f",
+    "parameters_sha256": "98f4ff0b238fc6b7a381e9bab609edac529f3be1d1f6053fe3b41952c41b745c",
+    "truth_sha256": "bc6f30934e8e57fdab4c3697693ba7a3ac69a3ca498803bd6445aa3ab52c4559",
+    "rpm_source": "JSBSim propeller-rpm on shared simulation clock; nearest match within 0.03 s"
+  },
+  "simulation_alignment": {
+    "throttle_onset_s": 25.900000000000023,
+    "flight_detection_s": 31.50000000000003,
+    "altitude_reference_m": 0.04098049551248545,
+    "duration_s": 60.0
+  },
+  "rule": "First >=20% throttle for 1 second in takeoff stage with airspeed <8 m/s, within 30 seconds before first flight detection. No fitted time shift or time warping.",
+  "height_reference": "Median EKF altitude from -5 to -1 seconds before each throttle onset.",
+  "comparison": "Different missions, control demands, flap settings and propulsion; descriptive overlays, not controlled fidelity scoring.",
+  "actual": {
+    "2026-05-01": {
+      "throttle_onset_s": 1111.0000000000769,
+      "flight_detection_s": 1118.6000000000786,
+      "altitude_reference_m": -0.47239530086517334,
+      "duration_s": 60.0,
+      "source_sha256": "ff76fd9b9d52106c1af833e4152d8bd1c6ae835b4b827123e0afb5b96e5b82ab"
+    },
+    "2026-04-30": {
+      "throttle_onset_s": 671.0000000000293,
+      "flight_detection_s": 679.9000000000314,
+      "altitude_reference_m": 1.9330042600631714,
+      "duration_s": 60.0,
+      "source_sha256": "2842778a72b86b7cdac40463a82947e901596a5626f71719676cb441d6bf7e3e"
+    }
+  }
+}

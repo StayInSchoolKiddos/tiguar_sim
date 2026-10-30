@@ -15,16 +15,27 @@ import subprocess
 import time
 import pandas as pd
 from pymavlink import mavutil
+from sitl_parameters import default_text
 
 ROOT=Path(__file__).resolve().parents[1]
 LAT=38.6961834;LON=-94.2578576
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--model',default='tig_calibrated');ap.add_argument('--duration',type=float,default=240);ap.add_argument('--name');ap.add_argument('--speedup',type=int,default=8);ap.add_argument('--profile',action='store_true');ap.add_argument('--interactive',action='store_true');args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--model',default='tig_calibrated');ap.add_argument('--duration',type=float,default=240);ap.add_argument('--name');ap.add_argument('--speedup',type=int,default=8);ap.add_argument('--profile',action='store_true');ap.add_argument('--interactive',action='store_true')
+    ap.add_argument('--param-file',type=Path,help='Explicit experimental configuration; otherwise use shared settings plus model defaults')
+    ap.add_argument('--aircraft-dir',type=Path,default=ROOT/'aircraft',help='Directory containing the requested aircraft model')
+    ap.add_argument('--takeoff-pitch',type=float,default=12,help='AUTO mission takeoff minimum pitch in degrees (mission command, not a parameter)')
+    ap.add_argument('--cruise-leg-m',type=float,help='Distance north of home for the first post-takeoff waypoint, for straight cruise tests')
+    args=ap.parse_args()
+    if args.cruise_leg_m is not None and args.cruise_leg_m<=0:
+        ap.error('--cruise-leg-m must be positive')
     name=args.name or args.model
     work=ROOT/'runtime'/name;work.mkdir(parents=True,exist_ok=True)
-    shutil.copytree(ROOT/'aircraft'/args.model,work/'aircraft'/args.model,dirs_exist_ok=True)
-    shutil.copy2(ROOT/'config/sitl.parm',work/'sitl.parm')
+    shutil.copytree(args.aircraft_dir/args.model,work/'aircraft'/args.model,dirs_exist_ok=True)
+    if args.param_file:
+        shutil.copy2(args.param_file,work/'sitl.parm')
+    else:
+        (work/'sitl.parm').write_text(default_text(args.model))
     env=os.environ.copy();env['PATH']=str(ROOT/'vendor/jsbsim/build/src')+os.pathsep+env['PATH'];env['JSBSIM_DEBUG']='0'
     defaults=str(ROOT/'vendor/ardupilot/Tools/autotest/default_params/plane-jsbsim.parm')+','+str(work/'sitl.parm')
     # Fail early on stale JSBSim listeners: otherwise ArduPilot can connect to the wrong model.
@@ -37,12 +48,15 @@ def main():
     log=(work/'console.log').open('w');proc=subprocess.Popen(command,cwd=work,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
     events=[];rows=[];state={};started=None;ready=False;uploaded=False;mission_sent=False;last_hb=0;simtime=0
     # Home, takeoff, straight climb, indefinite right loiter (~18 degrees at 23 m/s).
-    items=[(16,LAT,LON,0,0,0,0),(22,LAT+.004,LON,100,12,0,0),(16,LAT+.009,LON,100,0,0,0),(17,LAT+.009,LON,100,0,0,170)]
+    items=[(16,LAT,LON,0,0,0,0),(22,LAT+.004,LON,100,args.takeoff_pitch,0,0),(16,LAT+.009,LON,100,0,0,0),(17,LAT+.009,LON,100,0,0,170)]
     if args.profile:
         items=items[:3]+[(19,LAT+.009,LON,100,90,0,170),(178,0,0,0,0,25,-1),
             (19,LAT+.009,LON,100,60,0,170),(178,0,0,0,0,23,-1),
             (19,LAT+.009,LON,130,90,0,170),(19,LAT+.009,LON,100,90,0,170),
             (19,LAT+.009,LON,100,90,0,-170),(17,LAT+.009,LON,100,0,0,-170)]
+    if args.cruise_leg_m is not None:
+        items=[item if i<2 else (item[0],LAT+args.cruise_leg_m/111320.,*item[2:])
+               if item[0] in (16,17,19) else item for i,item in enumerate(items)]
     (work/'mission.json').write_text(json.dumps(items,indent=2))
     def cmd(command,*params):
         conn.mav.command_long_send(1,1,command,0,*(list(params)+[0]*(7-len(params))))

@@ -1,0 +1,16 @@
+{
+  "run": "runtime/da35_default75_straight",
+  "duration_s": 59.90000000000006,
+  "mean_eas_mps": 22.9996932442983,
+  "eas_rmse_mps": 0.022180277420960157,
+  "mean_height_m": 100.02459333333333,
+  "height_rmse_m": 0.03507287650972909,
+  "mean_climb_mps": -0.00199498086056943,
+  "climb_rms_mps": 0.011873913088945776,
+  "mean_bank_deg": -0.6008666666666667,
+  "bank_rms_deg": 0.6011003798590271,
+  "mean_rpm": 4855.371847408112,
+  "rpm_std": 13.148603211695875,
+  "mean_throttle_pct": 25.70133333333333,
+  "tracking_pass": true
+}

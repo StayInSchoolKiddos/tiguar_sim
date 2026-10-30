@@ -9,11 +9,16 @@ sys.path.insert(0,str(ROOT/'.deps'))
 import jsbsim
 import numpy as np
 import pandas as pd
+MODEL='tig_calibrated'
+RUN_DIR=ROOT/'runtime/candidate_final_scaled'
+CALIBRATION=ROOT/'config/calibration.json'
 
 def model():
     f=jsbsim.FGFDMExec(str(ROOT));f.set_debug_level(0)
-    f.set_aircraft_path('aircraft');f.set_engine_path('aircraft/tig_calibrated/Engine')
-    assert f.load_model('tig_calibrated')
+    output=ROOT/'runtime/pipeline_checks';output.mkdir(parents=True,exist_ok=True)
+    f.set_output_path(str(output))
+    f.set_aircraft_path('aircraft');f.set_engine_path(f'aircraft/{MODEL}/Engine')
+    assert f.load_model(MODEL)
     f.disable_output()
     f['ic/h-sl-ft']=1200;f['ic/vc-kts']=45;f.set_dt(.001);f.run_ic()
     return f
@@ -49,12 +54,12 @@ class PipelineChecks(unittest.TestCase):
                 self.assertGreaterEqual((w.airspeed_healthy==1).mean(),.98)
                 self.assertGreaterEqual((w.flap.abs()<1).mean(),.98)
                 self.assertTrue(w.throttle_output_norm.between(0,1).all())
-        c=json.loads((ROOT/'config/calibration.json').read_text())
+        c=json.loads(CALIBRATION.read_text())
         self.assertNotEqual(c['training'],c['held_out'])
         self.assertTrue(np.all(np.diff(c['shaft_power_w'])>=0))
 
     def test_coupled_run_completed(self):
-        p=ROOT/'runtime/candidate_final_scaled'
+        p=RUN_DIR
         summary=json.loads((p/'summary.json').read_text())
         self.assertTrue(summary['valid'])
         s=pd.read_csv(p/'telemetry.csv')
@@ -68,4 +73,12 @@ class PipelineChecks(unittest.TestCase):
         self.assertGreater(s[s.mission_seq==3].tail(200).roll.mean(),10)
         self.assertLess(s[s.mission_seq==9].tail(200).roll.mean(),-10)
 
-if __name__=='__main__':unittest.main()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--model',default=MODEL)
+    parser.add_argument('--run-dir',type=Path,default=RUN_DIR)
+    parser.add_argument('--config',type=Path,default=CALIBRATION)
+    args,remaining=parser.parse_known_args()
+    MODEL=args.model; RUN_DIR=args.run_dir; CALIBRATION=args.config
+    unittest.main(argv=[sys.argv[0]]+remaining)

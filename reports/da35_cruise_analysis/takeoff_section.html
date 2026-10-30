@@ -1,0 +1,64 @@
+<section id="takeoff"><h2>3. Takeoff: actual flight vs simulated flight</h2>
+<p>These plots use the <strong>saved coupled ArduPilot/JSBSim run of the cruise-tuned DA35</strong>: <code>runtime/da35_default75_validation</code>. Each day shows its first recorded takeoff against the same simulated takeoff. The parameter-file hash is included in the provenance.</p>
+<p class="key"><strong>Black solid line = actual flight.</strong><br><strong class="sim">Orange dashed line = simulated flight, without electric boost.</strong></p>
+<p>Time zero is independently detected when throttle reaches 20% and stays above it for one second during takeoff. We show five seconds before and 60 seconds after this event. This is throttle onset—not liftoff. Airspeed is EAS for both traces; simulated RPM comes from JSBSim truth on the shared simulation clock.</p>
+<p class="note"><strong>Different takeoff conditions:</strong> you recall approximately 20% electric assistance during takeoff/initial climb. The simulation has no boost. Actual logs show an initial flap command of 50; the simulated aircraft has no calibrated flap model. Wind, commands, targets and aircraft configuration can also differ. These overlays reveal differences; they do not isolate engine error or prove takeoff fidelity.</p>
+<p><strong>What to look for:</strong> compare the initial RPM rise and acceleration, then the rate of height gain. The pitch and throttle panels help explain when different controller commands contribute to separation. Once the simulation reaches its altitude target, it reduces throttle; later RPM differences also reflect that different flight path.</p>
+<h3>May 1: first recorded takeoff</h3>
+<figure><img src="takeoff_2026-05-01_actual_vs_simulated.png" alt="May 1 actual versus simulated takeoff airspeed, RPM and height over time."><figcaption>Black solid = actual flight. Orange dashed = the same coupled simulated takeoff used for both date comparisons. Gray shading shows five seconds before throttle onset. Height is zeroed to each flight's pre-takeoff reference.</figcaption></figure>
+<details open><summary>May 1: climb rate, pitch and throttle</summary><img src="takeoff_2026-05-01_controls.png" alt="May 1 actual versus simulated climb rate, pitch and gasoline throttle commands."><p>The throttle traces show why these are not identical-input tests. Recorded throttle represents the gasoline output channel; it does not measure electric assistance. The simulation controller can command a different throttle or pitch while flying its own mission.</p></details><h3>April 30: first recorded takeoff</h3>
+<figure><img src="takeoff_2026-04-30_actual_vs_simulated.png" alt="April 30 actual versus simulated takeoff airspeed, RPM and height over time."><figcaption>Black solid = actual flight. Orange dashed = the same coupled simulated takeoff used for both date comparisons. Gray shading shows five seconds before throttle onset. Height is zeroed to each flight's pre-takeoff reference.</figcaption></figure>
+<details open><summary>April 30: climb rate, pitch and throttle</summary><img src="takeoff_2026-04-30_controls.png" alt="April 30 actual versus simulated climb rate, pitch and gasoline throttle commands."><p>The throttle traces show why these are not identical-input tests. Recorded throttle represents the gasoline output channel; it does not measure electric assistance. The simulation controller can command a different throttle or pitch while flying its own mission.</p></details>
+<details><summary>Takeoff timing, peak RPM and source data</summary><p>Descriptive values over the displayed interval. A blank timing means the threshold was not reached within 60 seconds. Values include recorded transients; no curve shifts or smoothing were fitted to improve agreement.</p><div class="table-wrap"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Flight day</th>
+      <th>Source</th>
+      <th>Peak RPM (0–60 s)</th>
+      <th>Seconds to 20 m/s EAS</th>
+      <th>Seconds to +50 m</th>
+      <th>Initial flap command (logged units)</th>
+      <th>Missing RPM samples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2026-05-01</td>
+      <td>Actual</td>
+      <td>8247.0</td>
+      <td>21.1</td>
+      <td>37.5</td>
+      <td>50.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2026-05-01</td>
+      <td>Simulated</td>
+      <td>7958.5</td>
+      <td>42.5</td>
+      <td>25.5</td>
+      <td>10.8</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2026-04-30</td>
+      <td>Actual</td>
+      <td>8321.0</td>
+      <td>15.0</td>
+      <td>38.3</td>
+      <td>50.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>2026-04-30</td>
+      <td>Simulated</td>
+      <td>7958.5</td>
+      <td>42.5</td>
+      <td>25.5</td>
+      <td>10.8</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></div>
+<p><a href="takeoff_simulated.csv">Simulated data</a> · <a href="takeoff_actual_2026-05-01.csv">May 1 actual data</a> · <a href="takeoff_actual_2026-04-30.csv">April 30 actual data</a> · <a href="takeoff_alignment.json">Alignment and provenance</a></p>
+<p>Simulation: <code>runtime/da35_default75_validation</code>. Flight-controller states are extracted from the simulated BIN log using the same fields as the actual logs. RPM is joined from JSBSim truth within 30 ms, with no clock offset fitted.</p></details></section>
